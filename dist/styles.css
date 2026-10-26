@@ -1695,3 +1695,5 @@ code {
 @media(max-width:850px){.project-hero{gap:35px}.project-section{grid-template-columns:1fr;gap:20px}.team-grid{grid-template-columns:repeat(2,1fr)}.source-section{align-items:flex-start;flex-direction:column}}
 @media(max-width:600px){.project-hero{grid-template-columns:1fr;padding:35px 0 55px}.hero-device{max-width:290px;transform:rotate(2deg)}.project-intro h1{font-size:44px}.project-lead{font-size:14px}.project-facts{gap:15px;flex-wrap:wrap}.how-grid{grid-template-columns:1fr}.how-grid article{border-bottom:1px solid var(--line);padding-bottom:15px}.project-section{padding:35px 0}.team-grid{gap:14px}.pixel-person{height:140px}.team-card h3{font-size:14px}.project-actions a{font-size:12px}.header nav{gap:14px}}
 @media(prefers-reduced-motion:reduce){.pixel-person svg{transition:none}}
+.pixel-person{overflow:hidden}
+.pixel-person img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
