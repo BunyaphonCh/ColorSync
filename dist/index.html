@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="theme-color" content="#101112" />
-    <title>ColorSync — Memory in motion.</title>
+    <title>ColorSync</title>
     <meta
       name="description"
       content="เกมจดจำลำดับสี เล่นกับ Arduino หรือทดลองบนเว็บ พร้อมการแข่งขันสองคนและสถิติแยกระดับ"
@@ -24,13 +24,8 @@
         ><a href="#matches" data-nav="matches">ผลการแข่งขัน</a>
       </nav>
       <div class="header-tools">
-        <button
-          id="theme"
-          class="icon-btn"
-          aria-label="เปลี่ยนเป็นธีมสว่าง"
-          title="เปลี่ยนธีม"
-        >
-          ☼</button
+
+          </button
         ><button id="connection" class="connection">
           <span class="dot"></span
           ><span id="connection-label">ยังไม่เชื่อมต่อ</span><span>↗</span>
@@ -55,9 +50,9 @@
         <div class="source-bar">
           <span
             ><span class="source-marker" id="source-marker"></span
-            ><b id="source-label">พร้อมเชื่อมต่อเครื่องเล่น</b
+            ><b id="source-label">พร้อมเชื่อมต่อบอร์ด</b
             ><span id="source-description">
-              หรือเริ่มจากโหมดทดลองบนเว็บ</span
+              หรือ เริ่มจากโหมดทดลองบนเว็บ</span
             ></span
           ><button id="demo" class="text-btn">ทดลองเล่นบนเว็บ ↗</button
           ><button id="exit-demo" class="text-btn" hidden>
@@ -73,7 +68,7 @@
             </button>
           </div>
           <div class="toolbar-note" id="mode-description">
-            ทำลายสถิติของตัวเอง ทีละสี
+            มาทำลายสถิติของตัวเองกัน!!
           </div>
           <button id="sound" class="text-btn" aria-pressed="false">
             ♫ เปิดเสียง
@@ -119,10 +114,10 @@
             </div>
             <div class="game-message">
               <span id="phase-label" class="phase-label"
-                >READY WHEN YOU ARE</span
+                >ARE YOU READY ?</span
               >
-              <h2 id="phase-title" aria-live="polite">พร้อมท้าทายความจำ?</h2>
-              <p id="phase-help">เลือกระดับ แล้วเริ่มจากสีแรกไปด้วยกัน</p>
+              <h2 id="phase-title" aria-live="polite">พร้อมท้าทายความจำอะเปล่า?</h2>
+              <p id="phase-help">ใส่ชื่อ เลือกระดับ แล้วกดเริ่มเกมเลย</p>
             </div>
             <div class="board">
               <button
@@ -180,7 +175,7 @@
             <div class="game-foot">
               <span id="hardware-note"
                 >ใช้ปุ่มสีบนตัวเครื่องเมื่อเชื่อมต่อบอร์ด</span
-              ><span class="signal" id="freshness">○ รอสัญญาณ</span>
+              >
             </div>
           </section>
           <aside class="info-panel" id="solo-panel">
@@ -195,16 +190,16 @@
             <ol class="steps">
               <li>
                 <span>01</span>
-                <div><b>ความจำของคุณอยู่ในระดับไหน</b><small>ลองดูสิ</small></div>
+                <div><b>เลือกเชื่อมบอร์ด หรือ เล่นบนเว็บ</b></div>
               </li>
               <li>
                 <span>02</span>
-                <div><b>กดให้ตรง</b><small>ตอบทีละสีตามลำดับ</small></div>
+                <div><b>ใส่ชื่อเพื่อเก็บเป็นประวัติ</b></div>
               </li>
               <li>
                 <span>03</span>
                 <div>
-                  <b>ไปต่ออีกหนึ่ง</b><small>ผ่านรอบแล้วเพิ่มสีใหม่</small>
+                  <b>เลือกระดับ เเละกดเริ่มเกมเบย</b>
                 </div>
               </li>
             </ol>
@@ -281,7 +276,7 @@
       <section id="history" class="view" hidden>
         <div class="page-heading">
           <div class="eyebrow">EVERY ROUND COUNTS</div>
-          <h1>เก็บทุกครั้ง<span class="accent">ที่เก่งขึ้น.</span></h1>
+          <h1>เก็บทุกครั้ง<span class="accent">ที่เก่งขึ้น</span></h1>
           <p>ประวัติและคะแนนสูงสุด แยกตามระดับความเร็ว</p>
         </div>
         <div class="filters">
@@ -329,7 +324,6 @@
               </table>
             </div>
             <div id="history-empty" class="empty-state">
-              <span>◌</span>
               <h3>สถิติแรกเริ่มจากการลอง</h3>
               <p>เล่นเกมแล้วกลับมาดูความก้าวหน้าที่นี่</p>
               <a href="#arena" class="inline-link">ไปเล่นเกม ↗</a>
@@ -352,7 +346,7 @@
       <section id="matches" class="view" hidden>
         <div class="page-heading">
           <div class="eyebrow">FRIENDLY RIVALRY</div>
-          <h1>เพื่อนกัน<span class="accent">ก็แข่งกันได้.</span></h1>
+          <h1>เพื่อนกัน<span class="accent">ก็แข่งกันได้</span></h1>
           <p>เทียบผลแบบคนต่อคน ภายใต้ความเร็วและลำดับสีเดียวกัน</p>
         </div>
         <div class="filters">
@@ -378,8 +372,8 @@
     </main>
     <footer>
       <a class="brand" href="#arena"
-        >ColorSync<span class="version">/ MEMORY IN MOTION</span></a
-      ><span>สร้างมาเพื่อจำ เล่นเพื่อสนุก.</span
+        >ColorSync<span class="version"></span></a
+      ><span>จาก ทีมงานคุณตะพาบ</span
       ><a href="ColorSync-source.zip" download
         >ดาวน์โหลดโค้ด + คู่มือต่อบอร์ด ↗</a
       >
@@ -391,7 +385,7 @@
       ><span class="eyebrow">CONNECT YOUR COLORS</span>
       <h2>จากบอร์ด สู่หน้าจอ</h2>
       <p>
-        อัปโหลดเฟิร์มแวร์ ColorSync v3 จากชุดดาวน์โหลด แล้วเปิด IP
+        โหลดโค้ด ColorSync จากชุดดาวน์โหลดเฟิร์มเเวร์ แล้วเปิด IP
         ของบอร์ดด้วยอุปกรณ์ใน Wi-Fi เดียวกัน
       </p>
       <ol class="connect-steps">
@@ -401,7 +395,7 @@
       </ol>
       <div class="callout">
         เว็บออนไลน์นี้ทดลองเล่นได้ แต่จะไม่เชื่อมบอร์ดในบ้านโดยอัตโนมัติ
-        หน้าเว็บที่เปิดจากบอร์ดจะรับสถานะไฟและคะแนนจากเครื่องจริง
+        หน้าเว็บที่เปิดจากบอร์ดจะรับสถานะไฟ และคะแนนจากเครื่องจริง
       </div>
       <p id="connect-message" role="status"></p>
       <button id="connect-device" class="primary">
@@ -410,8 +404,9 @@
         >ดาวน์โหลดเฟิร์มแวร์และเว็บไซต์</a
       >
       <p class="muted">
-        เล่นจริง: ดูไฟแล้วกดปุ่มบนเครื่อง · ทดลอง: กดปุ่มบนเว็บหรือแป้น 1–4<br />ข้อมูลสีสะท้อนไฟที่บอร์ดกำลังแสดง
-        ไม่เฉลยสีถัดไปตอนตอบ
+        เล่นจริง : ดูสัญญาณไฟจากหลอดไฟหรือหน้าเว็บก็ได้
+        <br>
+        ทดลอง : กดปุ่มจำลองบนหน้าเว็บไซด์ได้เลย<br />
       </p>
     </dialog>
     <dialog id="confirm-dialog">

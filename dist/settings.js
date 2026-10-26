@@ -1,7 +1,7 @@
 export const LEVELS = [
   {
     id: 1,
-    name: "FAST",
+    name: "Beginner",
     on: 600,
     gap: 250,
     rounds: 5,
@@ -9,7 +9,7 @@ export const LEVELS = [
   },
   {
     id: 2,
-    name: "FASTER",
+    name: "Intermediate",
     on: 350,
     gap: 150,
     rounds: 7,
@@ -17,7 +17,7 @@ export const LEVELS = [
   },
   {
     id: 3,
-    name: "TURBO",
+    name: "Advanced",
     on: 180,
     gap: 100,
     rounds: 10,
@@ -25,7 +25,7 @@ export const LEVELS = [
   },
   {
     id: 4,
-    name: "EXTREME",
+    name: "Extreme",
     on: 90,
     gap: 70,
     rounds: 15,
