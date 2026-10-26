@@ -49,7 +49,59 @@
     <p>เกมมีความเร็ว 4 ระดับ จำนวนรอบ 5, 7, 10 และ 15 รอบตามลำดับ จอ LCD แสดงสถานะและผลการเล่น ส่วนเว็บไซต์ใช้กรอกชื่อ เลือกความเร็ว เริ่มเกม และดูคะแนน โดยบอร์ดให้บริการหน้าเว็บผ่านเครือข่าย Wi-Fi เดียวกัน ระบบบันทึกประวัติในเบราว์เซอร์และรองรับการแข่งขันแบบผลัดกันเล่นสองคนด้วยความเร็วและลำดับสีเดียวกัน โครงงานนี้นำการเขียนโปรแกรม ระบบฝังตัว และการพัฒนาเว็บมาประยุกต์ใช้ร่วมกัน</p>
     <details><summary>Read the English abstract</summary><p>ColorSync is a sequence-memory game built with an Arduino UNO R4 WiFi and a web interface. LEDs and a buzzer present a color sequence, and players repeat it using physical buttons. Each completed round earns one point and adds one color to the next round. Four difficulty levels offer targets of 5, 7, 10, and 15 rounds. An LCD displays game status and results. The board serves a local website for player names, difficulty selection, game controls, and scores. Browser storage keeps play history, while a two-player mode compares results using the same difficulty and sequence. A browser-only demo is also available. The project combines embedded programming and web development in an interactive memory activity.</p></details></div>
   </section>
-  <section class="project-section"><div class="section-caption"><h2>วิธีการเล่น</h2><p>ดู จำ กด</p></div><div class="how-grid"><article><b>01</b><h3>เลือกความเร็ว</h3><p>ใส่ชื่อ เลือกระดับ แล้วกดเริ่มเกม</p></article><article><b>02</b><h3>จำลำดับไฟ</h3><p>ดูสีและฟังเสียง</p></article><article><b>03</b><h3>กดตามที่จำ</h3><p>ตอบถูกครบรับ 1 คะแนน รอบหน้ามีสีเพิ่ม</p></article></div></section>
+  <section class="project-section" id="how">
+    <div class="section-caption"><h2>วิธีเล่น: ดู จำ กด</h2><p>ทุกรอบเริ่มจากลำดับเดิม</p></div>
+    <div class="how-visual">
+      <div class="how-steps">
+        <article class="how-card c-blue"><span class="how-num">01</span>
+          <div class="how-art"><div class="mini-levels"><i class="on">1</i><i>2</i><i>3</i><i>4</i></div><div class="mini-start">เริ่มเกม ↗</div></div>
+          <h3>เลือกความเร็ว</h3><p>ใส่ชื่อ เลือกระดับ แล้วกดเริ่มเกม</p></article>
+        <article class="how-card c-yellow"><span class="how-num">02</span>
+          <div class="how-art"><div class="mini-pads"><i class="d-red"></i><i class="d-yellow on"></i><i class="d-green"></i><i class="d-blue"></i></div><div class="art-note">♫ ไฟติด + เสียง</div></div>
+          <h3>จำลำดับไฟ</h3><p>ดูสีและฟังเสียง</p></article>
+        <article class="how-card c-green"><span class="how-num">03</span>
+          <div class="how-art"><div class="mini-pads"><i class="d-red"></i><i class="d-yellow"></i><i class="d-green on"></i><i class="d-blue"></i></div><div class="mini-pips"><i class="done"></i><i class="done"></i><i></i></div></div>
+          <h3>กดตามที่จำ</h3><p>ตอบถูกครบรับ 1 คะแนน รอบหน้ามีสีเพิ่ม</p></article>
+      </div>
+      <div class="how-growth">
+        <h3>ทุกรอบเพิ่มขึ้นทีละสี <small>ตัวอย่างลำดับ</small></h3>
+        <div class="grow-row"><span>รอบ 1</span><div class="seq"><i class="d-red"></i></div><em>ตอบถูก +1 คะแนน</em></div>
+        <div class="grow-row"><span>รอบ 2</span><div class="seq"><i class="d-red"></i><i class="d-blue"></i></div><em>+1 คะแนน</em></div>
+        <div class="grow-row"><span>รอบ 3</span><div class="seq"><i class="d-red"></i><i class="d-blue"></i><i class="d-yellow"></i></div><em>+1 คะแนน</em></div>
+        <div class="grow-row"><span>รอบ 4</span><div class="seq"><i class="d-red"></i><i class="d-blue"></i><i class="d-yellow"></i><i class="d-green"></i></div><em>+1 คะแนน</em></div>
+        <p class="grow-note">ช่องที่มีเส้นประ คือสีใหม่ที่เพิ่มเข้ามาในรอบนั้น</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="project-section" id="highlights">
+    <div class="section-caption"><h2>จุดเด่นของโปรเจ็กต์</h2><p>ทำไมต้องเล่น ColorSync</p></div>
+    <div class="hl-grid">
+      <article class="hl-card c-red"><span class="hl-icon">◉</span><h3>เล่นได้สองแบบ</h3><p>เล่นกับบอร์ด Arduino จริง หรือทดลองกดบนหน้าเว็บก็ได้</p></article>
+      <article class="hl-card c-yellow"><span class="hl-icon">⚡</span><h3>4 ระดับความเร็ว</h3><p>ไฟกระพริบตั้งแต่ช้าไปเร็วมาก จำนวน 5, 7, 10 หรือ 15 รอบตามระดับที่เลือก</p></article>
+      <article class="hl-card c-green"><span class="hl-icon">⚔</span><h3>แข่งกับเพื่อน</h3><p>ผลัดกันเล่นสองคน ใช้ความเร็วและลำดับสีเดียวกัน</p></article>
+      <article class="hl-card c-blue"><span class="hl-icon">♫</span><h3>เสียงแยกตามสี</h3><p>Buzzer ร้องเสียงสูงต่ำต่างกันในแต่ละสี ฟังช่วยจำได้</p></article>
+      <article class="hl-card c-red"><span class="hl-icon">▤</span><h3>ประวัติและอันดับ</h3><p>บันทึกคะแนนแยกตามระดับ ดูสถิติสูงสุดและอันดับผู้เล่นได้</p></article>
+      <article class="hl-card c-yellow"><span class="hl-icon">✳</span><h3>ไม่ต้องติดตั้งแอป</h3><p>บอร์ดเปิดเว็บเอง แค่ต่อ Wi-Fi เดียวกันแล้วเปิดเบราว์เซอร์</p></article>
+    </div>
+  </section>
+
+  <!-- โปสเตอร์ & คลิป: ใส่ลิงก์ที่ PROJECT_LINKS ในสคริปต์ท้ายไฟล์ -->
+  <section class="project-section" id="media">
+    <div class="section-caption"><h2>โปสเตอร์ &amp; คลิป</h2><p>ภาพรวมโครงงานและตัวอย่างการเล่นจริง</p></div>
+    <div class="media-grid">
+      <figure class="media-card" id="poster-card">
+        <div class="frame-bar"><i class="d-red"></i><i class="d-yellow"></i><i class="d-green"></i><span>POSTER</span></div>
+        <div class="media-frame poster-frame" id="poster-frame"><div class="media-empty"><span>▣</span><b>POSTER</b><small>เร็ว ๆ นี้</small></div></div>
+        <a class="media-link" id="poster-link" target="_blank" rel="noopener" hidden>เปิดโปสเตอร์ขนาดเต็ม ↗</a>
+      </figure>
+      <figure class="media-card" id="video-card">
+        <div class="frame-bar"><i class="d-red"></i><i class="d-yellow"></i><i class="d-green"></i><span>DEMO CLIP</span></div>
+        <div class="media-frame video-frame" id="video-frame"><div class="media-empty"><span>▶</span><b>DEMO CLIP</b><small>เร็ว ๆ นี้</small></div></div>
+        <a class="media-link" id="video-link" target="_blank" rel="noopener" hidden>เปิดดูคลิปในหน้าต่างใหม่ ↗</a>
+      </figure>
+    </div>
+  </section>
   <section class="project-section"><div class="section-caption"><h2>โปรเจ็กต์พวกเราใช้อะไรบ้าง</h2></div><div class="project-details"><h3>อุปกรณ์</h3><div class="table-scroll"><table><thead><tr><th>อุปกรณ์</th><th>จำนวน</th><th>หน้าที่</th></tr></thead><tbody>
   <tr><td>Arduino UNO R4 WiFi</td><td>1</td><td>ควบคุมเกมและให้บริการเว็บ</td></tr><tr><td>LED แดง เหลือง เขียว น้ำเงิน</td><td>4</td><td>แสดงลำดับสี</td></tr><tr><td>Push Button</td><td>4</td><td>รับคำตอบจากผู้เล่น</td></tr><tr><td>Passive Buzzer</td><td>1</td><td>เล่นเสียงแต่ละสีและแจ้งผล</td></tr><tr><td>LCD 16×2 พร้อม I2C</td><td>1</td><td>แสดงสถานะ คะแนน และมาสคอต</td></tr><tr><td>ตัวต้านทาน LED</td><td>4</td><td>จำกัดกระแส</td></tr><tr><td>Breadboard / สาย Jumper / USB</td><td>1 ชุด</td><td>ต่อวงจร จ่ายไฟ และอัปโหลดโค้ด</td></tr></tbody></table></div>
   <h3>โปรแกรมและการเชื่อมต่อ</h3><p>Arduino IDE · C/C++ · WiFiS3 · Wire · LiquidCrystal_I2C · ArduinoJson<br>HTML · CSS · JavaScript · LocalStorage</p><p>ปุ่มกดส่งคำตอบให้บอร์ดตรวจสอบ แล้วแสดงผลผ่าน LED เสียง และ LCD เว็บไซต์รับสถานะผ่าน HTTP และใช้ตารางเวลาของรอบช่วยแสดงแสงตามบอร์ด ความตรงกันของแสงยังขึ้นกับความหน่วงของเครือข่าย</p>
@@ -79,20 +131,16 @@
     <figure class="photo-frame"><img src="images/device.jpg" alt="ภาพอุปกรณ์ ColorSync ที่ประกอบเสร็จ" loading="lazy" onload="document.getElementById('device-photo').hidden=false"><figcaption>Arduino UNO R4 WiFi · LED 4 สี · ปุ่มกด · Buzzer · LCD 16×2</figcaption></figure>
   </section>
 
-  <section class="project-section" id="video" hidden>
-    <div class="section-caption"><h2>วิดีโอสาธิต</h2><p>ดูการเล่นจริงตั้งแต่เริ่มจนจบเกม</p></div>
-    <div class="video-frame" id="video-frame" data-youtube=""></div>
-  </section>
 
   <section class="project-section" id="system">
     <div class="section-caption"><h2>ภาพรวมระบบ</h2><p>ใครส่งอะไรให้ใคร ดูได้ในภาพเดียว</p></div>
     <div>
       <div class="vz-system">
-        <div class="vz-box"><h3>INPUT</h3><ul><li>ปุ่มกด 4 สี</li><li>ปุ่มเริ่ม/ตั้งค่าจากเว็บ</li></ul></div>
+        <div class="vz-box in"><h3>INPUT</h3><div class="mini-dots"><i class="d-red"></i><i class="d-yellow"></i><i class="d-green"></i><i class="d-blue"></i></div><ul><li>ปุ่มกด 4 สี</li><li>ปุ่มเริ่ม/ตั้งค่าจากเว็บ</li></ul></div>
         <div class="vz-arrow" aria-hidden="true">→</div>
         <div class="vz-box core"><h3>ARDUINO UNO R4 WiFi</h3><ul><li>สุ่มและเก็บลำดับสี</li><li>ตรวจคำตอบ นับคะแนน จับเวลา</li><li>เปิดเว็บเซิร์ฟเวอร์ในเครือข่าย Wi-Fi</li></ul></div>
         <div class="vz-arrow" aria-hidden="true">→</div>
-        <div class="vz-box"><h3>OUTPUT</h3><ul><li>LED 4 สี</li><li>Buzzer เสียงแต่ละสี</li><li>LCD แสดงสถานะและคะแนน</li></ul></div>
+        <div class="vz-box out"><h3>OUTPUT</h3><div class="mini-dots"><i class="d-red"></i><i class="d-yellow"></i><i class="d-green"></i><i class="d-blue"></i></div><ul><li>LED 4 สี</li><li>Buzzer เสียงแต่ละสี</li><li>LCD แสดงสถานะและคะแนน</li></ul></div>
       </div>
       <div class="vz-net">
         <div class="vz-box core"><h3>ARDUINO</h3><ul><li>เสิร์ฟหน้าเว็บ</li></ul></div>
@@ -123,10 +171,10 @@
     <div class="section-caption"><h2>ขั้นตอนการทำงานของเกม</h2><p>หนึ่งรอบเล่นเป็นอย่างไร</p></div>
     <div>
       <div class="flow">
-        <div class="flow-step"><b>01</b><h3>เริ่มเกม</h3><p>กดเริ่มจากหน้าเว็บ บอร์ดสุ่มลำดับสีใหม่</p></div>
-        <div class="flow-step"><b>02</b><h3>เตรียมตัว</h3><p>รอ 2.5 วินาที ก่อนไฟเริ่มกระพริบ</p></div>
-        <div class="flow-step"><b>03</b><h3>แสดงลำดับสี</h3><p>LED ติดพร้อมเสียงทีละสี ตามความเร็วที่เลือก</p></div>
-        <div class="flow-step"><b>04</b><h3>ผู้เล่นกดตาม</h3><p>กดปุ่มตามลำดับ แต่ละครั้งต้องไม่เกิน 10 วินาที</p></div>
+        <div class="flow-step c-red"><b>01</b><h3>เริ่มเกม</h3><p>กดเริ่มจากหน้าเว็บ บอร์ดสุ่มลำดับสีใหม่</p></div>
+        <div class="flow-step c-yellow"><b>02</b><h3>เตรียมตัว</h3><p>รอ 2.5 วินาที ก่อนไฟเริ่มกระพริบ</p></div>
+        <div class="flow-step c-green"><b>03</b><h3>แสดงลำดับสี</h3><p>LED ติดพร้อมเสียงทีละสี ตามความเร็วที่เลือก</p></div>
+        <div class="flow-step c-blue"><b>04</b><h3>ผู้เล่นกดตาม</h3><p>กดปุ่มตามลำดับ แต่ละครั้งต้องไม่เกิน 10 วินาที</p></div>
       </div>
       <div class="flow-question">ตรวจคำตอบ</div>
       <div class="flow-result">
@@ -145,7 +193,7 @@
   <section class="project-section" id="code">
     <div class="section-caption"><h2>ตัวอย่างโค้ด Arduino</h2><p>ตัดมาจากสเก็ตช์จริง ดูทั้งหมดได้ใน GitHub</p></div>
     <div>
-<figure class="code-card"><figcaption>ColorSync.ino · กำหนดขา เสียง และเวลา</figcaption><pre><code><span class="tk-k">const</span> <span class="tk-k">byte</span> LED_PINS[<span class="tk-n">4</span>] = {<span class="tk-n">2</span>, <span class="tk-n">4</span>, <span class="tk-n">6</span>, <span class="tk-n">8</span>};
+<figure class="code-card"><figcaption>ColorSync.ino - กำหนดขา เสียง และเวลา</figcaption><pre><code><span class="tk-k">const</span> <span class="tk-k">byte</span> LED_PINS[<span class="tk-n">4</span>] = {<span class="tk-n">2</span>, <span class="tk-n">4</span>, <span class="tk-n">6</span>, <span class="tk-n">8</span>};
 <span class="tk-k">const</span> <span class="tk-k">byte</span> BUTTON_PINS[<span class="tk-n">4</span>] = {<span class="tk-n">3</span>, <span class="tk-n">5</span>, <span class="tk-n">7</span>, <span class="tk-n">9</span>};
 
 <span class="tk-k">const</span> <span class="tk-k">byte</span> BUZZER_PIN = <span class="tk-n">12</span>;
@@ -155,7 +203,7 @@
                     DEBOUNCE_MS = <span class="tk-n">25</span>;
 <span class="tk-k">const</span> <span class="tk-k">unsigned</span> <span class="tk-k">int</span> ON_MS[] = {<span class="tk-n">600</span>, <span class="tk-n">350</span>, <span class="tk-n">180</span>, <span class="tk-n">90</span>}, GAP_MS[] = {<span class="tk-n">250</span>, <span class="tk-n">150</span>, <span class="tk-n">100</span>, <span class="tk-n">70</span>};
 <span class="tk-k">const</span> <span class="tk-k">int</span> TARGETS[] = {<span class="tk-n">5</span>, <span class="tk-n">7</span>, <span class="tk-n">10</span>, <span class="tk-n">15</span>};</code></pre></figure>
-<figure class="code-card"><figcaption>ColorSync.ino · แสดงสีหนึ่งสี (LED + เสียง)</figcaption><pre><code><span class="tk-k">void</span> <span class="tk-f">showColor</span>(<span class="tk-k">int</span> color) {
+<figure class="code-card"><figcaption>ColorSync.ino - แสดงสีหนึ่งสี (LED + เสียง)</figcaption><pre><code><span class="tk-k">void</span> <span class="tk-f">showColor</span>(<span class="tk-k">int</span> color) {
   <span class="tk-f">lightsOff</span>();
   <span class="tk-k">if</span> (color &lt; <span class="tk-n">0</span> || color &gt; <span class="tk-n">3</span>)
     <span class="tk-k">return</span>;
@@ -164,7 +212,7 @@
     <span class="tk-f">tone</span>(BUZZER_PIN, NOTES[color]);
   litColor = color;
 }</code></pre></figure>
-<figure class="code-card"><figcaption>ColorSync.ino · ตรวจว่ากดตรงกับลำดับหรือไม่</figcaption><pre><code>  <span class="tk-k">int</span> color = <span class="tk-n">0</span>;
+<figure class="code-card"><figcaption>ColorSync.ino - ตรวจว่ากดตรงกับลำดับหรือไม่</figcaption><pre><code>  <span class="tk-k">int</span> color = <span class="tk-n">0</span>;
   <span class="tk-k">while</span> (!(stableButtons &amp; (<span class="tk-n">1</span> &lt;&lt; color)))
     ++color;
   <span class="tk-k">int</span> expected = answerIndex;
@@ -617,19 +665,42 @@
     </dialog>
     <div id="toast" role="status" hidden></div>
     <script>
-      /* วิดีโอสาธิต: ใส่รหัสวิดีโอ YouTube ที่ data-youtube ของ #video-frame แล้วหัวข้อจะขึ้นเอง */
+      /* ===== ใส่ลิงก์โปสเตอร์และคลิปตรงนี้ (เว้นว่างไว้ = แสดงกรอบ "เร็ว ๆ นี้") =====
+         poster : ลิงก์รูปโปสเตอร์ (ลิงก์รูปตรง ๆ หรือ Google Drive ที่แชร์แบบ "ทุกคนที่มีลิงก์")
+         video  : ลิงก์คลิป YouTube / Google Drive / ไฟล์ .mp4 */
+      var PROJECT_LINKS = {
+        poster: "",
+        video: ""
+      };
       (function () {
-        var box = document.getElementById("video-frame");
-        var id = box ? (box.getAttribute("data-youtube") || "").trim() : "";
-        if (!id) return;
-        var f = document.createElement("iframe");
-        f.src = "https://www.youtube.com/embed/" + encodeURIComponent(id);
-        f.title = "วิดีโอสาธิต ColorSync";
-        f.loading = "lazy";
-        f.allow = "accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-        f.allowFullscreen = true;
-        box.appendChild(f);
-        document.getElementById("video").hidden = false;
+        function driveId(u) { var m = u.match(/\/d\/([\w-]+)/) || u.match(/[?&]id=([\w-]+)/); return m ? m[1] : ""; }
+        function ytId(u) { var m = u.match(/(?:youtu\.be\/|[?&]v=|embed\/|shorts\/)([\w-]{11})/); return m ? m[1] : (/^[\w-]{11}$/.test(u) ? u : ""); }
+        function fill(frameId, linkId, el, href) {
+          var frame = document.getElementById(frameId), link = document.getElementById(linkId);
+          if (!frame) return;
+          frame.innerHTML = ""; frame.classList.add("filled"); frame.appendChild(el);
+          if (link && href) { link.href = href; link.hidden = false; }
+        }
+        var poster = (PROJECT_LINKS.poster || "").trim();
+        if (poster) {
+          var img = document.createElement("img");
+          var pid = /drive\.google\.com/.test(poster) ? driveId(poster) : "";
+          img.src = pid ? "https://drive.google.com/thumbnail?id=" + pid + "&sz=w2000" : poster;
+          img.alt = "โปสเตอร์โครงงาน ColorSync"; img.loading = "lazy";
+          fill("poster-frame", "poster-link", img, poster);
+        }
+        var video = (PROJECT_LINKS.video || "").trim();
+        if (video) {
+          var el, y = ytId(video), d = /drive\.google\.com/.test(video) ? driveId(video) : "";
+          if (/\.mp4(\?|$)/i.test(video)) { el = document.createElement("video"); el.src = video; el.controls = true; el.preload = "metadata"; }
+          else {
+            el = document.createElement("iframe");
+            el.src = y ? "https://www.youtube.com/embed/" + y : d ? "https://drive.google.com/file/d/" + d + "/preview" : video;
+            el.title = "คลิปสาธิต ColorSync"; el.loading = "lazy"; el.allowFullscreen = true;
+            el.allow = "clipboard-write; encrypted-media; picture-in-picture";
+          }
+          fill("video-frame", "video-link", el, y ? "https://youtu.be/" + y : video);
+        }
       })();
     </script>
     <script type="module" src="app.js"></script>
