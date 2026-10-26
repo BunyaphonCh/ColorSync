@@ -71,7 +71,9 @@ const areSettingsLocked = () =>
   isStarting ||
   !!(currentMatch && currentMatch.status === "between");
 function setText(id, value) {
-  getElement(id).textContent = value;
+  // ข้ามถ้าไม่มี element นี้ในหน้าเว็บ เพื่อไม่ให้ทั้งหน้าพังตอนเชื่อมบอร์ด
+  const element = getElement(id);
+  if (element) element.textContent = value;
 }
 function confirmAction(title, text, onConfirm) {
   setText("confirm-title", title);
@@ -796,8 +798,10 @@ window.addEventListener("beforeunload", (event) => {
 updateScreen();
 showCurrentPage();
 // Only probe a board automatically when served from a local address.
+// บอร์ดเสิร์ฟเว็บที่พอร์ต 80 เท่านั้น ถ้าเปิดจาก Live Server (เช่นพอร์ต 5500) จะไม่ probe
 if (
   location.protocol === "http:" &&
+  (location.port === "" || location.port === "80") &&
   (/^(\d{1,3}\.){3}\d{1,3}$/.test(location.hostname) ||
     location.hostname.endsWith(".local"))
 ) {
