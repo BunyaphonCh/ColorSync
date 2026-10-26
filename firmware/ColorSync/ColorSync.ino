@@ -12,8 +12,8 @@
 #if __has_include("secrets.h")
 #include "secrets.h"
 #else
-#define WIFI_SSID ""
-#define WIFI_PASSWORD ""
+#define WIFI_SSID "§"
+#define WIFI_PASSWORD "8g654kp0"
 #endif
 
 const byte LED_PINS[4] = {2, 4, 6, 8};
