@@ -1,5 +1,7 @@
 /* สีหลักของเว็บ แก้ที่นี่เพื่อเปลี่ยนธีม */
 :root {
+  --font-ui: "Google Sans Code", "Noto Sans Thai", Tahoma, sans-serif;
+  --font-mono: "Google Sans Code", "Noto Sans Thai", monospace;
   color-scheme: dark;
   --bg: #101112;
   --panel: #17191b;
@@ -35,7 +37,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: "Noto Sans Thai", Tahoma, system-ui, sans-serif;
+  font-family: var(--font-ui);
   font-size: 14px;
   line-height: 1.65;
 }
@@ -138,7 +140,7 @@ h3 {
   background: var(--blue);
 }
 .version {
-  font: 10px monospace;
+  font: 10px var(--font-mono);
   color: var(--muted);
   letter-spacing: 1px;
   margin-left: 5px;
@@ -221,7 +223,7 @@ main {
   padding: 46px 0 33px;
 }
 .eyebrow {
-  font: 10px/1.5 monospace;
+  font: 10px/1.5 var(--font-mono);
   letter-spacing: 1.6px;
   color: var(--muted);
 }
@@ -233,7 +235,7 @@ main {
   margin-right: 8px;
 }
 .hero h1 {
-  font: 900 clamp(44px, 5.6vw, 77px)/1.1 monospace;
+  font: 900 clamp(44px, 5.6vw, 77px)/1.1 var(--font-mono);
   letter-spacing: -4px;
   margin: 14px 0 14px;
 }
@@ -259,7 +261,7 @@ main {
   color: var(--muted);
 }
 .live-tag {
-  font: 9px monospace;
+  font: 9px var(--font-mono);
   letter-spacing: 1.4px;
   color: var(--muted);
 }
@@ -436,7 +438,7 @@ input:disabled {
   margin: 20px 0;
 }
 .player-score strong {
-  font: 600 64px/1.2 monospace;
+  font: 600 64px/1.2 var(--font-mono);
   letter-spacing: -4px;
 }
 .player-score span {
@@ -457,7 +459,7 @@ input:disabled {
   color: var(--muted);
 }
 .small-stat b {
-  font: 500 21px monospace;
+  font: 500 21px var(--font-mono);
   color: var(--ink);
 }
 .panel-note {
@@ -477,7 +479,7 @@ input:disabled {
   align-items: center;
 }
 .mini-tag {
-  font: 8px monospace;
+  font: 8px var(--font-mono);
   letter-spacing: 1px;
   border: 1px solid var(--line);
   padding: 4px 7px;
@@ -490,7 +492,7 @@ input:disabled {
   padding-top: 17px;
 }
 .phase-label {
-  font: 9px monospace;
+  font: 9px var(--font-mono);
   color: var(--accent);
   letter-spacing: 1.8px;
 }
@@ -563,11 +565,11 @@ input:disabled {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  font: 9px monospace;
+  font: 9px var(--font-mono);
   letter-spacing: 0.7px;
 }
 kbd {
-  font: 9px monospace;
+  font: 9px var(--font-mono);
   opacity: 0.6;
 }
 .pad.lit {
@@ -612,7 +614,7 @@ kbd {
   color: var(--muted);
 }
 .input-progress b {
-  font: 12px monospace;
+  font: 12px var(--font-mono);
   color: var(--ink);
 }
 .pips {
@@ -647,7 +649,7 @@ kbd {
   margin-bottom: 6px;
 }
 .game-metrics strong {
-  font: 500 25px monospace;
+  font: 500 25px var(--font-mono);
 }
 .game-metrics small {
   font-size: 13px;
@@ -684,7 +686,7 @@ kbd {
   color: var(--muted);
 }
 .best-block strong {
-  font: 500 42px/1.4 monospace;
+  font: 500 42px/1.4 var(--font-mono);
 }
 .steps {
   list-style: none;
@@ -697,7 +699,7 @@ kbd {
   margin: 14px 0;
 }
 .steps li > span {
-  font: 10px monospace;
+  font: 10px var(--font-mono);
   color: var(--muted);
   padding-top: 3px;
 }
@@ -753,11 +755,11 @@ kbd {
   text-align: left;
 }
 .level-option span {
-  font: 9px monospace;
+  font: 9px var(--font-mono);
   color: var(--muted);
 }
 .level-option b {
-  font: 600 12px monospace;
+  font: 600 12px var(--font-mono);
   margin: 4px 0;
 }
 .level-option small {
@@ -922,7 +924,7 @@ footer a:hover {
   font-size: 12px;
 }
 .history-summary strong {
-  font: 500 40px/1.7 monospace;
+  font: 500 40px/1.7 var(--font-mono);
 }
 /* หน้าประวัติและอันดับคะแนน */
 .history-layout {
@@ -976,7 +978,7 @@ td small {
   margin-top: 3px;
 }
 td strong {
-  font-family: monospace;
+  font-family: var(--font-mono);
   font-size: 18px;
 }
 .rank-row {
@@ -987,7 +989,7 @@ td strong {
   border-bottom: 1px solid var(--line);
 }
 .rank-row > span:first-child {
-  font: 12px monospace;
+  font: 12px var(--font-mono);
   color: var(--muted);
 }
 .rank-row > span:nth-child(2) {
@@ -995,7 +997,7 @@ td strong {
   overflow-wrap: anywhere;
 }
 .rank-row strong {
-  font: 20px monospace;
+  font: 20px var(--font-mono);
   color: var(--accent);
 }
 .privacy {
@@ -1045,14 +1047,14 @@ td strong {
 }
 .match-player strong {
   display: block;
-  font: 500 46px monospace;
+  font: 500 46px var(--font-mono);
   margin-top: 8px;
 }
 .match-player.winner strong {
   color: var(--accent);
 }
 .versus {
-  font: 12px monospace;
+  font: 12px var(--font-mono);
   color: var(--muted);
 }
 .match-verdict {
@@ -1652,3 +1654,17 @@ code {
     width: 100%;
   }
 }
+
+/* Keep secondary pages quieter and easier to scan. */
+#history .page-heading h1, #matches .page-heading h1 {
+  font-size: clamp(28px, 4vw, 42px);
+  letter-spacing: -0.025em;
+  line-height: 1.4;
+}
+#history .eyebrow, #matches .eyebrow, dialog .eyebrow {
+  letter-spacing: 0;
+  font-size: 12px;
+}
+#history .filters label, #matches .filters label { font-size: 13px; }
+#history .privacy, #matches .privacy { max-width: 850px; line-height: 1.9; }
+#theme { min-width: 40px; min-height: 40px; font-size: 22px; }

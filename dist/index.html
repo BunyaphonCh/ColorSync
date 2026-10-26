@@ -9,6 +9,9 @@
       name="description"
       content="เกมจดจำลำดับสี เล่นกับ Arduino หรือทดลองบนเว็บ พร้อมการแข่งขันสองคนและสถิติแยกระดับ"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -20,13 +23,11 @@
       >
       <nav aria-label="เมนูหลัก">
         <a href="#arena" data-nav="arena">เล่นเกม</a
-        ><a href="#history" data-nav="history">ประวัติ & สถิติ</a
+        ><a href="#history" data-nav="history">ประวัติการเล่น</a
         ><a href="#matches" data-nav="matches">ผลการแข่งขัน</a>
       </nav>
       <div class="header-tools">
-
-          </button
-        ><button id="connection" class="connection">
+        <button id="connection" class="connection">
           <span class="dot"></span
           ><span id="connection-label">ยังไม่เชื่อมต่อ</span><span>↗</span>
         </button>
@@ -77,7 +78,7 @@
         <div class="arena-layout">
           <aside class="player-panel" id="player-one">
             <div class="panel-top">
-              <span class="eyebrow">PLAYER 01</span
+              <span class="eyebrow">ผู้เล่น 1</span
               ><span class="player-indicator" id="p1-status">พร้อมเล่น</span>
             </div>
             <div class="avatar avatar-one" aria-hidden="true">
@@ -109,12 +110,12 @@
           </aside>
           <section class="game-panel" aria-label="พื้นที่เกม">
             <div class="game-panel-top">
-              <span class="eyebrow">THE PLAYGROUND</span
-              ><span id="game-source" class="mini-tag">DEVICE MODE</span>
+              <span class="eyebrow">จำสีแล้วกดตาม</span
+              ><span id="game-source" class="mini-tag">เล่นกับบอร์ด</span>
             </div>
             <div class="game-message">
               <span id="phase-label" class="phase-label"
-                >ARE YOU READY ?</span
+                >พร้อมหรือยัง</span
               >
               <h2 id="phase-title" aria-live="polite">พร้อมท้าทายความจำอะเปล่า?</h2>
               <p id="phase-help">ใส่ชื่อ เลือกระดับ แล้วกดเริ่มเกมเลย</p>
@@ -180,7 +181,7 @@
           </section>
           <aside class="info-panel" id="solo-panel">
             <div class="panel-top">
-              <span class="eyebrow">YOUR NEXT CHALLENGE</span><span>↗</span>
+              <span class="eyebrow">สถิติของคุณ</span><span>↗</span>
             </div>
             <h3>ความจำของคุณ<br />อยู่ใน<span class="accent">ระดับไหน</span></h3>
             <div class="best-block">
@@ -207,7 +208,7 @@
           </aside>
           <aside class="player-panel player-two" id="player-two" hidden>
             <div class="panel-top">
-              <span class="eyebrow">PLAYER 02</span
+              <span class="eyebrow">ผู้เล่น 2</span
               ><span class="player-indicator" id="p2-status">รอเล่น</span>
             </div>
             <div class="avatar avatar-two" aria-hidden="true">
@@ -241,7 +242,7 @@
         </div>
         <div class="settings-bar">
           <div class="settings-caption">
-            <span class="eyebrow">PICK YOUR PACE</span>
+            <span class="eyebrow">ความเร็ว</span>
             <h3>เลือกระดับของคุณ</h3>
           </div>
           <div
@@ -259,7 +260,7 @@
         </div>
         <div class="result-panel" id="result" hidden aria-live="polite">
           <div>
-            <span class="eyebrow" id="result-eyebrow">SESSION COMPLETE</span>
+            <span class="eyebrow" id="result-eyebrow">จบเกม</span>
             <h2 id="result-title"></h2>
             <p id="result-detail"></p>
           </div>
@@ -275,8 +276,8 @@
       <!-- หน้าประวัติ: JavaScript เติมข้อมูลจาก LocalStorage -->
       <section id="history" class="view" hidden>
         <div class="page-heading">
-          <div class="eyebrow">EVERY ROUND COUNTS</div>
-          <h1>เก็บทุกครั้ง<span class="accent">ที่เก่งขึ้น</span></h1>
+          <div class="eyebrow">ประวัติ</div>
+          <h1>ประวัติการเล่น</h1>
           <p>ประวัติและคะแนนสูงสุด แยกตามระดับความเร็ว</p>
         </div>
         <div class="filters">
@@ -294,7 +295,7 @@
         </div>
         <div class="history-summary">
           <div>
-            <span>จำนวนเกม · ตัวกรองนี้</span
+            <span>เกมที่เล่น</span
             ><strong id="history-total">0</strong>
           </div>
           <div>
@@ -307,8 +308,8 @@
         <div class="history-layout">
           <div class="table-panel">
             <div class="panel-top">
-              <h2>รอบที่ผ่านมา</h2>
-              <span class="eyebrow">RECENT SESSIONS</span>
+              <h2>เกมที่ผ่านมา</h2>
+              <span class="eyebrow">ล่าสุด</span>
             </div>
             <div class="table-scroll">
               <table>
@@ -324,30 +325,30 @@
               </table>
             </div>
             <div id="history-empty" class="empty-state">
-              <h3>สถิติแรกเริ่มจากการลอง</h3>
-              <p>เล่นเกมแล้วกลับมาดูความก้าวหน้าที่นี่</p>
+              <h3>ยังไม่มีประวัติ</h3>
+              <p>เล่นจบแล้ว คะแนนจะอยู่ที่นี่</p>
               <a href="#arena" class="inline-link">ไปเล่นเกม ↗</a>
             </div>
           </div>
           <aside class="rank-panel">
-            <span class="eyebrow">PERSONAL BESTS</span>
-            <h2>อันดับประจำระดับ</h2>
-            <p class="muted">ใช้คะแนนดีที่สุดของแต่ละชื่อ</p>
+            <span class="eyebrow">คะแนนสูงสุด</span>
+            <h2>อันดับผู้เล่น</h2>
+            <p class="muted">เรียงจากคะแนนสูงสุดของแต่ละคน</p>
             <div id="rank-list"></div>
           </aside>
         </div>
         <p class="privacy">
-          เก็บข้อมูลเฉพาะเบราว์เซอร์และที่อยู่เว็บนี้ ไม่ซิงก์ข้ามเครื่อง •
-          คะแนนทดลองแยกจากบอร์ดจริง • เกมที่หยุดเองไม่นับอันดับ • เก็บล่าสุด 500
+          เก็บข้อมูลเฉพาะเบราว์เซอร์และที่อยู่เว็บนี้ ไม่ซิงก์ข้ามเครื่อง |
+          คะแนนทดลองแยกจากบอร์ดจริง | เกมที่หยุดเองไม่นับอันดับ | เก็บล่าสุด 500
           เกม
         </p>
       </section>
       <!-- หน้าผลการแข่งขันสองคน -->
       <section id="matches" class="view" hidden>
         <div class="page-heading">
-          <div class="eyebrow">FRIENDLY RIVALRY</div>
-          <h1>เพื่อนกัน<span class="accent">ก็แข่งกันได้</span></h1>
-          <p>เทียบผลแบบคนต่อคน ภายใต้ความเร็วและลำดับสีเดียวกัน</p>
+          <div class="eyebrow">แข่งกับเพื่อน</div>
+          <h1>ผลการแข่งขัน</h1>
+          <p>ดูคะแนนของทั้งสองคน แยกตามระดับที่เล่น</p>
         </div>
         <div class="filters">
           <label
@@ -361,29 +362,24 @@
         <div id="match-list"></div>
         <div id="match-empty" class="empty-state">
           <span>⚔</span>
-          <h3>ยังไม่มีคู่แข่งขันในระดับนี้</h3>
+          <h3>ยังไม่มีผลการแข่งขัน</h3>
           <p>เลือก “แข่งกับเพื่อน” แล้วผลัดกันเล่นให้จบทั้งสองคน</p>
         </div>
-        <p class="privacy">
-          คะแนนเท่ากันถือว่าเสมอ • ยุติการแข่งขันกลางคันจะไม่ตัดสินผู้ชนะ •
-          เก็บผลล่าสุด 200 คู่
-        </p>
       </section>
     </main>
     <footer>
       <a class="brand" href="#arena"
         >ColorSync<span class="version"></span></a
       ><span>จาก ทีมงานคุณตะพาบ</span
-      ><a href="ColorSync-source.zip" download
-        >ดาวน์โหลดโค้ด + คู่มือต่อบอร์ด ↗</a
+      ><a href="#arena">กลับไปเล่นเกม ↗</a
       >
     </footer>
     <!-- คำแนะนำการเชื่อมบอร์ด -->
     <dialog id="connect-dialog">
       <button class="dialog-close" data-close="connect-dialog" aria-label="ปิด">
         ×</button
-      ><span class="eyebrow">CONNECT YOUR COLORS</span>
-      <h2>จากบอร์ด สู่หน้าจอ</h2>
+      ><span class="eyebrow">เชื่อมต่อบอร์ด</span>
+      <h2>เปิดเว็บจาก IP ของบอร์ด</h2>
       <p>
         โหลดโค้ด ColorSync จากชุดดาวน์โหลดเฟิร์มเเวร์ แล้วเปิด IP
         ของบอร์ดด้วยอุปกรณ์ใน Wi-Fi เดียวกัน
@@ -394,23 +390,21 @@
         <li>เปิด <code>http://IP-ของบอร์ด</code> ในเบราว์เซอร์</li>
       </ol>
       <div class="callout">
-        เว็บออนไลน์นี้ทดลองเล่นได้ แต่จะไม่เชื่อมบอร์ดในบ้านโดยอัตโนมัติ
-        หน้าเว็บที่เปิดจากบอร์ดจะรับสถานะไฟ และคะแนนจากเครื่องจริง
+        หากเปิดเว็บจาก Live Server ให้เลือกทดลองเล่น
+        เมื่อต้องการเล่นกับบอร์ด ให้เปิด IP ที่แสดงใน Serial Monitor
       </div>
       <p id="connect-message" role="status"></p>
       <button id="connect-device" class="primary">
         ตรวจสอบบอร์ดที่เว็บนี้ ↗</button
-      ><a class="inline-link" href="ColorSync-source.zip" download
-        >ดาวน์โหลดเฟิร์มแวร์และเว็บไซต์</a
       >
       <p class="muted">
         เล่นจริง : ดูสัญญาณไฟจากหลอดไฟหรือหน้าเว็บก็ได้
         <br>
-        ทดลอง : กดปุ่มจำลองบนหน้าเว็บไซด์ได้เลย<br />
+        ทดลอง: กดปุ่มบนเว็บได้เลย<br />
       </p>
     </dialog>
     <dialog id="confirm-dialog">
-      <span class="eyebrow">ONE QUICK CHECK</span>
+      <span class="eyebrow">ยืนยัน</span>
       <h2 id="confirm-title"></h2>
       <p id="confirm-text"></p>
       <div class="dialog-actions">

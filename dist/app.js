@@ -278,7 +278,7 @@ function updatePlayMode() {
     "mode-description",
     isDuelMode
       ? "ผลัดกันเล่น · ลำดับเดียวกัน · เริ่มที่ 1 สี"
-      : "ทำลายสถิติของตัวเอง ทีละสี",
+      : "ทำลายสถิติของตัวเองซะมุฮาฮ่า",
   );
 }
 function updateConnectionStatus() {
@@ -312,7 +312,7 @@ function updateConnectionStatus() {
   getElement("exit-demo").hidden = dataSource !== "demo";
   getElement("demo").disabled = isPlaying;
   getElement("exit-demo").disabled = isPlaying;
-  setText("game-source", dataSource === "demo" ? "DEMO MODE" : "DEVICE MODE");
+  setText("game-source", dataSource === "demo" ? "ทดลองบนเว็บ" : "เล่นกับบอร์ด");
   setText(
     "freshness",
     dataSource === "demo"
@@ -332,34 +332,34 @@ function updateGameMessage() {
   const isPlaying = isGameActive();
   const phases = {
     idle: [
-      "READY WHEN YOU ARE",
-      "พร้อมท้าทายความจำ?",
-      "เลือกระดับ แล้วเริ่มจากสีแรกไปด้วยกัน",
+      "พร้อมหรือยัง",
+      "พร้อมท้าทายความจำอะเปล่า?",
+      "ใส่ชื่อ เลือกระดับ แล้วกดเริ่มเกมเลย",
     ],
     prepare: [
-      "GET READY",
+      "เตรียมตัว",
       "เตรียมตัวให้พร้อม",
       "รอบนี้จำ " + gameState.round + " สี",
     ],
-    watch: ["WATCH & REMEMBER", "มองไฟ แล้วจำลำดับ", "รอไฟแสดงครบก่อนกดคำตอบ"],
+    watch: ["จำลำดับสี", "มองไฟ แล้วจำลำดับ", "รอไฟแสดงครบก่อนกดคำตอบ"],
     input: [
-      "YOUR TURN",
+      "ตาคุณแล้ว",
       "ตาคุณแล้ว!",
       "กดตามลำดับที่จำได้ · 10 วินาทีต่อคำตอบ",
     ],
     round: [
-      "ROUND CLEAR",
+      "ผ่านรอบแล้ว",
       "เยี่ยม! ผ่านอีกหนึ่งรอบ",
-      "รับ 1 คะแนน เตรียมพบลำดับถัดไป",
+      "ได้ 1 คะแนน รอบหน้ามีสีเพิ่มอีกหนึ่งสี",
     ],
     ended: [
-      "SESSION COMPLETE",
+      "จบเกม",
       gameState.endReason === "completed"
         ? "ผ่านครบแล้ว!"
         : "ไว้ลองใหม่อีกครั้ง",
       REASONS[gameState.endReason] || "เกมจบแล้ว",
     ],
-    stopped: ["SESSION STOPPED", "จบเกมแล้ว", "เกมที่หยุดเองไม่นับอันดับ"],
+    stopped: ["หยุดเกม", "จบเกมแล้ว", "เกมที่หยุดเองไม่นับอันดับ"],
   };
   const phaseText = phases[gameState.phase] || phases.idle;
   setText("phase-label", phaseText[0]);
@@ -641,9 +641,12 @@ function showCurrentPage() {
   getElements(".view").forEach(
     (element) => (element.hidden = element.id !== view),
   );
-  getElements("[data-nav]").forEach((element) =>
-    element.classList.toggle("active", element.dataset.nav === view),
-  );
+  getElements("[data-nav]").forEach((element) => {
+    const selected = element.dataset.nav === view;
+    element.classList.toggle("active", selected);
+    if (selected) element.setAttribute("aria-current", "page");
+    else element.removeAttribute("aria-current");
+  });
   updateHistoryScreen();
 }
 // 7. สร้างปุ่มเลือกระดับและผูกเหตุการณ์การกดปุ่ม
@@ -700,7 +703,7 @@ getElement("connect-device").onclick = async () => {
   } catch {
     setText(
       "connect-message",
-      "ไม่พบบอร์ดที่ที่อยู่เว็บนี้ กรุณาเปิดหน้าเว็บจาก IP ของบอร์ด หรือเลือกทดลองบนเว็บ",
+      "ยังไม่เจอบอร์ด ลองเปิด IP จาก Serial Monitor หรือเลือกทดลองเล่น",
     );
     isConnected = false;
     updateScreen();
@@ -732,16 +735,16 @@ getElement("sound").onclick = () => {
 };
 function applyTheme(themeName) {
   document.documentElement.dataset.theme = themeName;
-  getElement("theme").setAttribute(
+  getElement("theme")?.setAttribute(
     "aria-label",
     themeName === "dark" ? "เปลี่ยนเป็นธีมสว่าง" : "เปลี่ยนเป็นธีมมืด",
   );
-  setText("theme", themeName === "dark" ? "☼" : "☾");
+  if (getElement("theme")) setText("theme", themeName === "dark" ? "☼" : "☾");
   try {
     localStorage.setItem("colorsync:theme", themeName);
   } catch {}
 }
-getElement("theme").onclick = () =>
+if (getElement("theme")) getElement("theme").onclick = () =>
   applyTheme(
     document.documentElement.dataset.theme === "dark" ? "light" : "dark",
   );
