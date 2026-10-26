@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="th" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#101112" />
+    <title>ColorSync — Memory in motion.</title>
+    <meta
+      name="description"
+      content="เกมจดจำลำดับสี เล่นกับ Arduino หรือทดลองบนเว็บ พร้อมการแข่งขันสองคนและสถิติแยกระดับ"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- เมนูหลักและปุ่มสลับธีม -->
+    <header class="header">
+      <a class="brand" href="#arena" aria-label="ColorSync หน้าเล่นเกม"
+        ><span class="brand-mark"><i></i><i></i><i></i><i></i></span
+        >ColorSync<span class="version">/ 03</span></a
+      >
+      <nav aria-label="เมนูหลัก">
+        <a href="#arena" data-nav="arena">เล่นเกม</a
+        ><a href="#history" data-nav="history">ประวัติ & สถิติ</a
+        ><a href="#matches" data-nav="matches">ผลการแข่งขัน</a>
+      </nav>
+      <div class="header-tools">
+        <button
+          id="theme"
+          class="icon-btn"
+          aria-label="เปลี่ยนเป็นธีมสว่าง"
+          title="เปลี่ยนธีม"
+        >
+          ☼</button
+        ><button id="connection" class="connection">
+          <span class="dot"></span
+          ><span id="connection-label">ยังไม่เชื่อมต่อ</span><span>↗</span>
+        </button>
+      </div>
+    </header>
+    <main>
+      <!-- หน้าเล่นเกม -->
+      <section class="view" id="arena">
+        <div class="hero">
+          <div>
+            <div class="eyebrow">
+              <span class="tiny-square"></span> THE COLOR MEMORY ARCADE
+            </div>
+            <h1 id="pixel-title" aria-label="COLOR SYNC">
+              COLOR<span>SYNC</span>
+            </h1>
+            <p>
+              มองให้ทัน จำให้ได้
+              <span class="muted">แล้วไปให้ไกลกว่ารอบเดิม</span>
+            </p>
+          </div>
+          <div class="hero-side">
+            <span class="live-tag">FOCUS. REPEAT. LEVEL UP.</span>
+            <div class="color-line"><i></i><i></i><i></i><i></i></div>
+            <p>4 สี · 4 ระดับ · ความจำของคุณ</p>
+          </div>
+        </div>
+        <div class="source-bar">
+          <span
+            ><span class="source-marker" id="source-marker"></span
+            ><b id="source-label">พร้อมเชื่อมต่อเครื่องเล่น</b
+            ><span id="source-description">
+              หรือเริ่มจากโหมดทดลองบนเว็บ</span
+            ></span
+          ><button id="demo" class="text-btn">ทดลองเล่นบนเว็บ ↗</button
+          ><button id="exit-demo" class="text-btn" hidden>
+            กลับไปเชื่อมต่อบอร์ด ↗
+          </button>
+        </div>
+        <div class="arena-toolbar">
+          <div class="segmented" role="group" aria-label="รูปแบบการเล่น">
+            <button data-playmode="solo" class="selected" aria-pressed="true">
+              ◉ เล่นคนเดียว</button
+            ><button data-playmode="duel" aria-pressed="false">
+              ⚔ แข่งกับเพื่อน
+            </button>
+          </div>
+          <div class="toolbar-note" id="mode-description">
+            ทำลายสถิติของตัวเอง ทีละสี
+          </div>
+          <button id="sound" class="text-btn" aria-pressed="false">
+            ♫ เปิดเสียง
+          </button>
+        </div>
+        <div class="arena-layout">
+          <aside class="player-panel" id="player-one">
+            <div class="panel-top">
+              <span class="eyebrow">PLAYER 01</span
+              ><span class="player-indicator" id="p1-status">พร้อมเล่น</span>
+            </div>
+            <div class="avatar avatar-one" aria-hidden="true">
+              <svg viewBox="0 0 48 48">
+                <path d="M8 8h32v32H8zM4 16h4v16H4zm36 0h4v16h-4z" />
+                <path
+                  class="eye"
+                  d="M15 17h6v7h-6zm12 0h6v7h-6zM17 30h14v4H17z"
+                />
+              </svg>
+            </div>
+            <label for="name-one">ชื่อผู้เล่น</label
+            ><input
+              id="name-one"
+              maxlength="20"
+              placeholder="ใส่ชื่อของคุณ"
+              autocomplete="off"
+            />
+            <div class="player-score">
+              <strong id="score-one">0</strong><span>คะแนน</span>
+            </div>
+            <div class="panel-divider"></div>
+            <div class="small-stat">
+              <span>สถิติสูงสุด · ระดับนี้</span><b id="personal-best">—</b>
+            </div>
+            <p class="panel-note" id="player-note">
+              ตอบถูกครบทั้งรอบ รับ 1 คะแนน<br />รอบถัดไปมีสีเพิ่มอีกหนึ่งตำแหน่ง
+            </p>
+          </aside>
+          <section class="game-panel" aria-label="พื้นที่เกม">
+            <div class="game-panel-top">
+              <span class="eyebrow">THE PLAYGROUND</span
+              ><span id="game-source" class="mini-tag">DEVICE MODE</span>
+            </div>
+            <div class="game-message">
+              <span id="phase-label" class="phase-label"
+                >READY WHEN YOU ARE</span
+              >
+              <h2 id="phase-title" aria-live="polite">พร้อมท้าทายความจำ?</h2>
+              <p id="phase-help">เลือกระดับ แล้วเริ่มจากสีแรกไปด้วยกัน</p>
+            </div>
+            <div class="board">
+              <button
+                class="pad red"
+                data-color="0"
+                disabled
+                aria-label="สีแดง ปุ่ม 1"
+              >
+                <span class="pad-symbol">●</span
+                ><span class="pad-label">RED <kbd>1</kbd></span></button
+              ><button
+                class="pad yellow"
+                data-color="1"
+                disabled
+                aria-label="สีเหลือง ปุ่ม 2"
+              >
+                <span class="pad-symbol">✦</span
+                ><span class="pad-label">YELLOW <kbd>2</kbd></span></button
+              ><button
+                class="pad green"
+                data-color="2"
+                disabled
+                aria-label="สีเขียว ปุ่ม 3"
+              >
+                <span class="pad-symbol">▲</span
+                ><span class="pad-label">GREEN <kbd>3</kbd></span></button
+              ><button
+                class="pad blue"
+                data-color="3"
+                disabled
+                aria-label="สีน้ำเงิน ปุ่ม 4"
+              >
+                <span class="pad-symbol">■</span
+                ><span class="pad-label">BLUE <kbd>4</kbd></span></button
+              ><span class="board-center" aria-hidden="true">✳</span>
+            </div>
+            <div class="input-progress">
+              <div>
+                <span>จำนวนครั้งที่กดถูก</span><b id="input-count">0 / 0</b>
+              </div>
+              <div
+                class="pips"
+                id="input-pips"
+                aria-label="ความคืบหน้าคำตอบ"
+              ></div>
+            </div>
+            <div class="game-metrics">
+              <div><span>ระดับ</span><strong id="level">01</strong></div>
+              <div>
+                <span>รอบปัจจุบัน</span
+                ><strong id="round">— <small>/ 5</small></strong>
+              </div>
+              <div><span>คะแนนตอนนี้</span><strong id="score">0</strong></div>
+            </div>
+            <div class="game-foot">
+              <span id="hardware-note"
+                >ใช้ปุ่มสีบนตัวเครื่องเมื่อเชื่อมต่อบอร์ด</span
+              ><span class="signal" id="freshness">○ รอสัญญาณ</span>
+            </div>
+          </section>
+          <aside class="info-panel" id="solo-panel">
+            <div class="panel-top">
+              <span class="eyebrow">YOUR NEXT CHALLENGE</span><span>↗</span>
+            </div>
+            <h3>จำอีกนิด<br />ไปอีก<span class="accent">รอบ.</span></h3>
+            <div class="best-block">
+              <span>สถิติสูงสุด · ระดับนี้</span><strong id="all-best">—</strong
+              ><small>ในเบราว์เซอร์นี้</small>
+            </div>
+            <ol class="steps">
+              <li>
+                <span>01</span>
+                <div><b>มองและจำ</b><small>รอให้ลำดับสีแสดงครบ</small></div>
+              </li>
+              <li>
+                <span>02</span>
+                <div><b>กดให้ตรง</b><small>ตอบทีละสีตามลำดับ</small></div>
+              </li>
+              <li>
+                <span>03</span>
+                <div>
+                  <b>ไปต่ออีกหนึ่ง</b><small>ผ่านรอบแล้วเพิ่มสีใหม่</small>
+                </div>
+              </li>
+            </ol>
+            <a class="inline-link" href="#history">ดูประวัติของคุณ ↗</a>
+          </aside>
+          <aside class="player-panel player-two" id="player-two" hidden>
+            <div class="panel-top">
+              <span class="eyebrow">PLAYER 02</span
+              ><span class="player-indicator" id="p2-status">รอเล่น</span>
+            </div>
+            <div class="avatar avatar-two" aria-hidden="true">
+              <svg viewBox="0 0 48 48">
+                <path d="M8 8h32v32H8zM4 16h4v16H4zm36 0h4v16h-4z" />
+                <path
+                  class="eye"
+                  d="M14 18h8v5h-8zm12 0h8v5h-8zM16 29h4v4h8v-4h4v7H16z"
+                />
+              </svg>
+            </div>
+            <label for="name-two">ชื่อผู้เล่นคนที่ 2</label
+            ><input
+              id="name-two"
+              maxlength="20"
+              placeholder="ใส่ชื่อเพื่อน"
+              autocomplete="off"
+            />
+            <div class="player-score">
+              <strong id="score-two">—</strong><span>คะแนน</span>
+            </div>
+            <div class="panel-divider"></div>
+            <div class="small-stat">
+              <span>สถิติสูงสุด · ระดับนี้</span><b id="personal-best-two">—</b>
+            </div>
+            <p class="panel-note">
+              ผลัดกันเล่นเครื่องเดียว<br />ความเร็วเดียวกัน ลำดับสีเดียวกัน<br />เริ่มรอบแรกที่
+              1 สีทั้งสองคน
+            </p>
+          </aside>
+        </div>
+        <div class="settings-bar">
+          <div class="settings-caption">
+            <span class="eyebrow">PICK YOUR PACE</span>
+            <h3>เลือกระดับของคุณ</h3>
+          </div>
+          <div
+            id="levels"
+            class="level-options"
+            role="group"
+            aria-label="ระดับความเร็ว"
+          ></div>
+          <div class="start-actions">
+            <button id="start" class="primary" disabled>
+              เริ่มเกม <span>↗</span></button
+            ><button id="stop" class="danger" hidden>จบเกมรอบนี้</button
+            ><small id="start-help">เชื่อมต่อบอร์ดหรือเลือกทดลองเล่น</small>
+          </div>
+        </div>
+        <div class="result-panel" id="result" hidden aria-live="polite">
+          <div>
+            <span class="eyebrow" id="result-eyebrow">SESSION COMPLETE</span>
+            <h2 id="result-title"></h2>
+            <p id="result-detail"></p>
+          </div>
+          <button id="result-action" class="primary">เล่นอีกครั้ง ↗</button>
+        </div>
+        <div class="under-notes">
+          <p><span>✳</span> ทุกเกมเริ่มจาก 1 สี เพิ่มทีละสีจนผ่านครบตามระดับ</p>
+          <button id="how-to" class="text-btn">
+            วิธีเล่น & เชื่อมต่อเครื่อง ↗
+          </button>
+        </div>
+      </section>
+      <!-- หน้าประวัติ: JavaScript เติมข้อมูลจาก LocalStorage -->
+      <section id="history" class="view" hidden>
+        <div class="page-heading">
+          <div class="eyebrow">EVERY ROUND COUNTS</div>
+          <h1>เก็บทุกครั้ง<span class="accent">ที่เก่งขึ้น.</span></h1>
+          <p>ประวัติและคะแนนสูงสุด แยกตามระดับความเร็ว</p>
+        </div>
+        <div class="filters">
+          <label
+            >แหล่งข้อมูล<select id="history-source">
+              <option value="hardware">บอร์ดจริง</option>
+              <option value="demo">ทดลองบนเว็บ</option>
+            </select></label
+          ><label>ระดับ<select id="history-level"></select></label
+          ><label class="search-label"
+            >ผู้เล่น<input
+              id="history-search"
+              placeholder="ค้นหาชื่อผู้เล่น" /></label
+          ><button id="clear-history" class="quiet-button">ล้างประวัติ</button>
+        </div>
+        <div class="history-summary">
+          <div>
+            <span>จำนวนเกม · ตัวกรองนี้</span
+            ><strong id="history-total">0</strong>
+          </div>
+          <div>
+            <span>คะแนนสูงสุด</span><strong id="history-best">—</strong>
+          </div>
+          <div>
+            <span>เกมที่ผ่านครบ</span><strong id="history-wins">0</strong>
+          </div>
+        </div>
+        <div class="history-layout">
+          <div class="table-panel">
+            <div class="panel-top">
+              <h2>รอบที่ผ่านมา</h2>
+              <span class="eyebrow">RECENT SESSIONS</span>
+            </div>
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ผู้เล่น / เวลา</th>
+                    <th>รูปแบบ</th>
+                    <th>คะแนน</th>
+                    <th>ผลการเล่น</th>
+                  </tr>
+                </thead>
+                <tbody id="history-rows"></tbody>
+              </table>
+            </div>
+            <div id="history-empty" class="empty-state">
+              <span>◌</span>
+              <h3>สถิติแรกเริ่มจากการลอง</h3>
+              <p>เล่นเกมแล้วกลับมาดูความก้าวหน้าที่นี่</p>
+              <a href="#arena" class="inline-link">ไปเล่นเกม ↗</a>
+            </div>
+          </div>
+          <aside class="rank-panel">
+            <span class="eyebrow">PERSONAL BESTS</span>
+            <h2>อันดับประจำระดับ</h2>
+            <p class="muted">ใช้คะแนนดีที่สุดของแต่ละชื่อ</p>
+            <div id="rank-list"></div>
+          </aside>
+        </div>
+        <p class="privacy">
+          เก็บข้อมูลเฉพาะเบราว์เซอร์และที่อยู่เว็บนี้ ไม่ซิงก์ข้ามเครื่อง •
+          คะแนนทดลองแยกจากบอร์ดจริง • เกมที่หยุดเองไม่นับอันดับ • เก็บล่าสุด 500
+          เกม
+        </p>
+      </section>
+      <!-- หน้าผลการแข่งขันสองคน -->
+      <section id="matches" class="view" hidden>
+        <div class="page-heading">
+          <div class="eyebrow">FRIENDLY RIVALRY</div>
+          <h1>เพื่อนกัน<span class="accent">ก็แข่งกันได้.</span></h1>
+          <p>เทียบผลแบบคนต่อคน ภายใต้ความเร็วและลำดับสีเดียวกัน</p>
+        </div>
+        <div class="filters">
+          <label
+            >แหล่งข้อมูล<select id="match-source">
+              <option value="hardware">บอร์ดจริง</option>
+              <option value="demo">ทดลองบนเว็บ</option>
+            </select></label
+          ><label>ระดับ<select id="match-level"></select></label
+          ><button id="new-match" class="primary">เริ่มการแข่งขัน ↗</button>
+        </div>
+        <div id="match-list"></div>
+        <div id="match-empty" class="empty-state">
+          <span>⚔</span>
+          <h3>ยังไม่มีคู่แข่งขันในระดับนี้</h3>
+          <p>เลือก “แข่งกับเพื่อน” แล้วผลัดกันเล่นให้จบทั้งสองคน</p>
+        </div>
+        <p class="privacy">
+          คะแนนเท่ากันถือว่าเสมอ • ยุติการแข่งขันกลางคันจะไม่ตัดสินผู้ชนะ •
+          เก็บผลล่าสุด 200 คู่
+        </p>
+      </section>
+    </main>
+    <footer>
+      <a class="brand" href="#arena"
+        >ColorSync<span class="version">/ MEMORY IN MOTION</span></a
+      ><span>สร้างมาเพื่อจำ เล่นเพื่อสนุก.</span
+      ><a href="ColorSync-source.zip" download
+        >ดาวน์โหลดโค้ด + คู่มือต่อบอร์ด ↗</a
+      >
+    </footer>
+    <!-- คำแนะนำการเชื่อมบอร์ด -->
+    <dialog id="connect-dialog">
+      <button class="dialog-close" data-close="connect-dialog" aria-label="ปิด">
+        ×</button
+      ><span class="eyebrow">CONNECT YOUR COLORS</span>
+      <h2>จากบอร์ด สู่หน้าจอ</h2>
+      <p>
+        อัปโหลดเฟิร์มแวร์ ColorSync v3 จากชุดดาวน์โหลด แล้วเปิด IP
+        ของบอร์ดด้วยอุปกรณ์ใน Wi-Fi เดียวกัน
+      </p>
+      <ol class="connect-steps">
+        <li>ใส่ Wi-Fi ใน <code>secrets.h</code> แล้วอัปโหลด</li>
+        <li>เปิด Serial Monitor ที่ 115200 baud เพื่อดู IP</li>
+        <li>เปิด <code>http://IP-ของบอร์ด</code> ในเบราว์เซอร์</li>
+      </ol>
+      <div class="callout">
+        เว็บออนไลน์นี้ทดลองเล่นได้ แต่จะไม่เชื่อมบอร์ดในบ้านโดยอัตโนมัติ
+        หน้าเว็บที่เปิดจากบอร์ดจะรับสถานะไฟและคะแนนจากเครื่องจริง
+      </div>
+      <p id="connect-message" role="status"></p>
+      <button id="connect-device" class="primary">
+        ตรวจสอบบอร์ดที่เว็บนี้ ↗</button
+      ><a class="inline-link" href="ColorSync-source.zip" download
+        >ดาวน์โหลดเฟิร์มแวร์และเว็บไซต์</a
+      >
+      <p class="muted">
+        เล่นจริง: ดูไฟแล้วกดปุ่มบนเครื่อง · ทดลอง: กดปุ่มบนเว็บหรือแป้น 1–4<br />ข้อมูลสีสะท้อนไฟที่บอร์ดกำลังแสดง
+        ไม่เฉลยสีถัดไปตอนตอบ
+      </p>
+    </dialog>
+    <dialog id="confirm-dialog">
+      <span class="eyebrow">ONE QUICK CHECK</span>
+      <h2 id="confirm-title"></h2>
+      <p id="confirm-text"></p>
+      <div class="dialog-actions">
+        <button class="quiet-button" data-close="confirm-dialog">ยกเลิก</button
+        ><button id="confirm-yes" class="primary">ยืนยัน</button>
+      </div>
+    </dialog>
+    <div id="toast" role="status" hidden></div>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
