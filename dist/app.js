@@ -635,9 +635,10 @@ function updateMatchHistory() {
 }
 // 6. เปลี่ยนหน้าโดยดู #arena, #history หรือ #matches ใน URL
 function showCurrentPage() {
-  const view = ["arena", "history", "matches"].includes(location.hash.slice(1))
+  const hash = location.hash.slice(1);
+  const view = ["home", "arena", "history", "matches"].includes(location.hash.slice(1))
     ? location.hash.slice(1)
-    : "arena";
+    : "home";
   getElements(".view").forEach(
     (element) => (element.hidden = element.id !== view),
   );
@@ -648,6 +649,7 @@ function showCurrentPage() {
     else element.removeAttribute("aria-current");
   });
   updateHistoryScreen();
+  if (hash === "abstract") document.getElementById("abstract").scrollIntoView({ behavior: "smooth" });
 }
 // 7. สร้างปุ่มเลือกระดับและผูกเหตุการณ์การกดปุ่ม
 for (const levelSettings of LEVELS) {

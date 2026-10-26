@@ -9,7 +9,7 @@ entries=[]
 for i,name in enumerate(files):
     content=(root/'dist'/name).read_bytes()
     if name=='index.html':
-        content=re.sub(rb'href="ColorSync-source.zip"\s+download', b'href="https://colorsync-play.cherrymite4.chatgpt.site/ColorSync-source.zip"', content)
+        content=re.sub(rb'href="ColorSync-source.zip"\s+download', b'href="https://github.com/BunyaphonCh/ColorSync"', content)
     compressed=gzip.compress(content, compresslevel=9, mtime=0)
     lines.append(f'const uint8_t ASSET_{i}[] = {{'+','.join(str(b) for b in compressed)+'};')
     mime='text/html; charset=utf-8' if name.endswith('.html') else 'text/css' if name.endswith('.css') else 'text/javascript'

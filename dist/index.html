@@ -17,11 +17,12 @@
   <body>
     <!-- เมนูหลักและปุ่มสลับธีม -->
     <header class="header">
-      <a class="brand" href="#arena" aria-label="ColorSync หน้าเล่นเกม"
+      <a class="brand" href="#home" aria-label="ColorSync หน้าแรก"
         ><span class="brand-mark"><i></i><i></i><i></i><i></i></span
         >ColorSync<span class="version"></span></a
       >
       <nav aria-label="เมนูหลัก">
+        <a href="#home" data-nav="home">โครงงาน</a>
         <a href="#arena" data-nav="arena">เล่นเกม</a
         ><a href="#history" data-nav="history">ประวัติการเล่น</a
         ><a href="#matches" data-nav="matches">ผลการแข่งขัน</a>
@@ -34,8 +35,32 @@
       </div>
     </header>
     <main>
+<section class="view home-page" id="home">
+  <div class="project-hero">
+    <div class="project-intro"><p class="project-kicker">PHYCOM 2026 / IT KMITL</p>
+    <h1>จำให้ได้<br>แล้วกดให้<span>ตรงสี</span></h1>
+    <p class="project-lead">ColorSync เกมท้าความจำที่เล่นได้ทั้งบนบอร์ดและหน้าเว็บ<br>เริ่มจากหนึ่งสี แล้วไปให้ไกลกว่าเดิม</p>
+    <div class="project-actions"><a class="primary" href="#arena">ไปเล่นเกม ↗</a><a class="quiet-button" href="#abstract">อ่านบทคัดย่อ ↓</a></div>
+    <div class="project-facts"><span><b>4</b> สี</span><span><b>4</b> ความเร็ว</span><span><b>2</b> คนผลัดกันเล่น</span></div></div>
+    <div class="hero-device" aria-label="ภาพประกอบเกม ColorSync สี่สี"><div class="device-heading"><span>COLORSYNC</span><span>● READY</span></div><div class="device-lcd">WATCH THE COLORS<span>REMEMBER → REPEAT</span></div><div class="device-pads"><i class="d-red">●</i><i class="d-yellow">✦</i><i class="d-green">▲</i><i class="d-blue">■</i></div><p>LOOK · REMEMBER · PLAY</p></div>
+  </div>
+  <section class="project-section" id="abstract"><div class="section-caption"><span>01 / THE PROJECT</span><h2>บทคัดย่อ <small>Abstract</small></h2></div>
+    <div class="abstract-copy"><p>โครงงาน ColorSync เป็นเกมจดจำลำดับสีที่พัฒนาด้วยไมโครคอนโทรลเลอร์ Arduino UNO R4 WiFi ร่วมกับเว็บไซต์ เพื่อให้ผู้เล่นได้ใช้การสังเกต การจดจ่อ และการจดจำลำดับผ่านกิจกรรมที่สนุกและเข้าใจง่าย ระบบแสดงลำดับสีด้วย LED และเสียงจาก Buzzer จากนั้นผู้เล่นกดปุ่มตามลำดับที่เห็น เมื่อตอบถูกครบจะได้ 1 คะแนนและเพิ่มสีหนึ่งตำแหน่งในรอบถัดไป เกมสิ้นสุดเมื่อกดผิด หมดเวลาตอบ หรือผ่านครบทุกรอบ</p>
+    <p>เกมมีความเร็ว 4 ระดับ เป้าหมาย 5, 7, 10 และ 15 รอบตามลำดับ จอ LCD แสดงสถานะและผลการเล่น ส่วนเว็บไซต์ใช้กรอกชื่อ เลือกความเร็ว เริ่มเกม และดูคะแนน โดยบอร์ดให้บริการหน้าเว็บผ่านเครือข่าย Wi-Fi เดียวกัน ระบบบันทึกประวัติในเบราว์เซอร์และรองรับการแข่งขันแบบผลัดกันเล่นสองคนด้วยความเร็วและลำดับสีเดียวกัน โครงงานนี้นำการเขียนโปรแกรม ระบบฝังตัว และการพัฒนาเว็บมาประยุกต์ใช้ร่วมกัน</p>
+    <details><summary>Read the English abstract</summary><p>ColorSync is a sequence-memory game built with an Arduino UNO R4 WiFi and a web interface. LEDs and a buzzer present a color sequence, and players repeat it using physical buttons. Each completed round earns one point and adds one color to the next round. Four difficulty levels offer targets of 5, 7, 10, and 15 rounds. An LCD displays game status and results. The board serves a local website for player names, difficulty selection, game controls, and scores. Browser storage keeps play history, while a two-player mode compares results using the same difficulty and sequence. A browser-only demo is also available. The project combines embedded programming and web development in an interactive memory activity.</p></details></div>
+  </section>
+  <section class="project-section"><div class="section-caption"><span>02 / HOW TO PLAY</span><h2>ดู จำ แล้วกด</h2><p>ทุกรอบเริ่มจากลำดับเดิม<br>เพิ่มความท้าทายทีละสี</p></div><div class="how-grid"><article><b>01</b><h3>เลือกความเร็ว</h3><p>ใส่ชื่อ เลือกระดับ แล้วกดเริ่มเกม</p></article><article><b>02</b><h3>จำลำดับไฟ</h3><p>ดูสีและฟังเสียง รอให้แสดงครบก่อน</p></article><article><b>03</b><h3>กดตามที่จำ</h3><p>ตอบถูกครบรับ 1 คะแนน รอบหน้ามีสีเพิ่ม</p></article></div></section>
+  <section class="project-section"><div class="section-caption"><span>03 / INSIDE COLORSYNC</span><h2>ข้างในมีอะไรบ้าง</h2></div><div class="project-details"><h3>อุปกรณ์</h3><div class="table-scroll"><table><thead><tr><th>อุปกรณ์</th><th>จำนวน</th><th>หน้าที่</th></tr></thead><tbody>
+  <tr><td>Arduino UNO R4 WiFi</td><td>1</td><td>ควบคุมเกมและให้บริการเว็บ</td></tr><tr><td>LED แดง เหลือง เขียว น้ำเงิน</td><td>4</td><td>แสดงลำดับสี</td></tr><tr><td>Push Button</td><td>4</td><td>รับคำตอบจากผู้เล่น</td></tr><tr><td>Passive Buzzer</td><td>1</td><td>เล่นเสียงแต่ละสีและแจ้งผล</td></tr><tr><td>LCD 16×2 พร้อม I2C</td><td>1</td><td>แสดงสถานะ คะแนน และมาสคอต</td></tr><tr><td>ตัวต้านทาน LED</td><td>4</td><td>จำกัดกระแส</td></tr><tr><td>Breadboard / สาย Jumper / USB</td><td>1 ชุด</td><td>ต่อวงจร จ่ายไฟ และอัปโหลดโค้ด</td></tr></tbody></table></div>
+  <h3>โปรแกรมและการเชื่อมต่อ</h3><p>Arduino IDE · C/C++ · WiFiS3 · Wire · LiquidCrystal_I2C · ArduinoJson<br>HTML · CSS · JavaScript · LocalStorage</p><p>ปุ่มกดส่งคำตอบให้บอร์ดตรวจสอบ แล้วแสดงผลผ่าน LED เสียง และ LCD เว็บไซต์รับสถานะผ่าน HTTP และใช้ตารางเวลาของรอบช่วยแสดงแสงตามบอร์ด ความตรงกันของแสงยังขึ้นกับความหน่วงของเครือข่าย</p>
+  <details><summary>ดูขาที่ใช้ต่อวงจร</summary><p>LED: D2, D4, D6, D8<br>ปุ่มสี: D3, D5, D7, D9 ต่ออีกด้านลง GND ใช้ INPUT_PULLUP<br>Buzzer: D12<br>LCD I2C: SDA=A4, SCL=A5, address 0x27<br>LED แต่ละดวงต้องผ่านตัวต้านทาน และทุกอุปกรณ์ใช้ GND ร่วมกัน</p></details>
+  <div class="project-note"><b>เล่นจาก GitHub Pages กับเล่นบนบอร์ดต่างกันอย่างไร?</b><p>เว็บนี้แนะนำโครงงานและทดลองเกมได้โดยไม่ใช้บอร์ด หากเล่นกับอุปกรณ์จริง ให้เปิด IP ที่แสดงใน Serial Monitor โดยเชื่อมต่อ Wi-Fi เดียวกับบอร์ด ประวัติเก็บแยกตามเบราว์เซอร์และที่อยู่เว็บ</p></div></div></section>
+  <section class="team-section"><div class="section-caption"><span>04 / OUR TEAM</span><h2>ทีมงานคุณตะพาบ</h2><p>Physical Computing 2026 · IT KMITL</p></div><div class="team-grid"><article class="team-card member-0"><div class="pixel-person" aria-hidden="true"><svg viewBox="0 0 16 16" shape-rendering="crispEdges"><path fill="currentColor" d="M4 1h8v2h2v8h-2v3H4v-3H2V3h2zM1 6h2v4H1zm12 0h2v4h-2zM4 14h3v2H4zm5 0h3v2H9z"/><path fill="#111" d="M4 5h3v3H4zm5 0h3v3H9zM5 10h6v2H5z"/><path fill="#fff" d="M5 5h1v1H5zm5 0h1v1h-1z"/></svg></div><span class="team-number">PLAYER 01</span><h3>ณัชชา ธรรมเอกภาพ</h3><p>68070039</p></article><article class="team-card member-1"><div class="pixel-person" aria-hidden="true"><svg viewBox="0 0 16 16" shape-rendering="crispEdges"><path fill="currentColor" d="M4 1h8v2h2v8h-2v3H4v-3H2V3h2zM1 6h2v4H1zm12 0h2v4h-2zM4 14h3v2H4zm5 0h3v2H9z"/><path fill="#111" d="M4 5h3v3H4zm5 0h3v3H9zM5 10h6v2H5z"/><path fill="#fff" d="M5 5h1v1H5zm5 0h1v1h-1z"/></svg></div><span class="team-number">PLAYER 02</span><h3>ณัฐฐาพร มานะธำรง</h3><p>68070042</p></article><article class="team-card member-2"><div class="pixel-person" aria-hidden="true"><svg viewBox="0 0 16 16" shape-rendering="crispEdges"><path fill="currentColor" d="M4 1h8v2h2v8h-2v3H4v-3H2V3h2zM1 6h2v4H1zm12 0h2v4h-2zM4 14h3v2H4zm5 0h3v2H9z"/><path fill="#111" d="M4 5h3v3H4zm5 0h3v3H9zM5 10h6v2H5z"/><path fill="#fff" d="M5 5h1v1H5zm5 0h1v1h-1z"/></svg></div><span class="team-number">PLAYER 03</span><h3>บุญสิตา นามบุญเรือง</h3><p>68070092</p></article><article class="team-card member-3"><div class="pixel-person" aria-hidden="true"><svg viewBox="0 0 16 16" shape-rendering="crispEdges"><path fill="currentColor" d="M4 1h8v2h2v8h-2v3H4v-3H2V3h2zM1 6h2v4H1zm12 0h2v4h-2zM4 14h3v2H4zm5 0h3v2H9z"/><path fill="#111" d="M4 5h3v3H4zm5 0h3v3H9zM5 10h6v2H5z"/><path fill="#fff" d="M5 5h1v1H5zm5 0h1v1h-1z"/></svg></div><span class="team-number">PLAYER 04</span><h3>บุณยาพร ชัยมงคลทรัพย์</h3><p>68070093</p></article></div></section>
+  <section class="source-section"><div><span class="project-kicker">05 / OPEN THE CODE</span><h2>อยากรู้ว่าทำงานยังไง?</h2><p>ดูโค้ดวงจร หน้าเว็บ และวิธีติดตั้งได้ใน GitHub</p></div><div class="project-actions"><a class="primary" href="https://github.com/BunyaphonCh/ColorSync" target="_blank" rel="noopener">ดู Source Code ↗</a><a class="quiet-button" href="https://github.com/BunyaphonCh/ColorSync/tree/main/firmware/ColorSync" target="_blank" rel="noopener">โค้ด Arduino ↗</a><a class="quiet-button pages-download" href="ColorSync-source.zip" download>ดาวน์โหลดโค้ด ZIP ↓</a></div></section>
+  <details class="project-references"><summary>แหล่งอ้างอิง</summary><ul><li><a href="https://docs.sunfounder.com/projects/summary-of-fun-projects/en/latest/esp32/color_memory.html">SunFounder — Color Memory</a></li><li><a href="https://docs.arduino.cc/hardware/uno-r4-wifi/">Arduino — UNO R4 WiFi</a></li></ul></details>
+</section>
       <!-- หน้าเล่นเกม -->
-      <section class="view" id="arena">
+      <section class="view" id="arena" hidden>
         <div class="hero">
           <div>
             <h1 id="pixel-title" aria-label="COLOR SYNC">
