@@ -4,14 +4,12 @@
 
 ### เกมจดจำลำดับสี เล่นได้ทั้งบนบอร์ด Arduino จริงและบนหน้าเว็บ
 
-**ดู 👀 จำ 🧠 กด 🎮 ให้ตรงสี**
-
 ![Arduino](https://img.shields.io/badge/Arduino-UNO%20R4%20WiFi-00979D?style=for-the-badge&logo=arduino&logoColor=white)
 ![C++](https://img.shields.io/badge/C%2B%2B-Firmware-00599C?style=for-the-badge&logo=cplusplus&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-Web-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![Wi-Fi](https://img.shields.io/badge/Wi--Fi-HTTP%20API-7ac894?style=for-the-badge)
 
-Physical Computing 2026 · คณะเทคโนโลยีสารสนเทศ สจล. (IT KMITL)
+Physical Computing 2026 - IT KMITL [คณะเทคโนโลยีสารสนเทศ สจล.]
 
 </div>
 
@@ -19,12 +17,12 @@ Physical Computing 2026 · คณะเทคโนโลยีสารสน�
 
 ## 🔗 ลิงก์โครงงาน
 
-| | ลิงก์ |
+| รายการ | ลิงก์ |
 |---|---|
-| 🌐 เว็บไซต์โครงงาน | วางลิงก์ที่นี่ |
-| 🎬 คลิปสาธิต (YouTube) | วางลิงก์ที่นี่ |
-| 🖼️ โปสเตอร์ | วางลิงก์ที่นี่ |
-| 💻 Source Code | https://github.com/BunyaphonCh/ColorSync |
+| เว็บไซต์โครงงาน | วางลิงก์ที่นี่ |
+| คลิปสาธิต (YouTube) | วางลิงก์ที่นี่ |
+| โปสเตอร์ | วางลิงก์ที่นี่ |
+| Source Code | https://github.com/BunyaphonCh/ColorSync |
 
 ---
 
@@ -53,9 +51,9 @@ ColorSync is a sequence-memory game built with an Arduino UNO R4 WiFi and a web 
 
 ## 🎯 วัตถุประสงค์
 
-1. 🧠 ฝึกการสังเกต การจดจ่อ และการจดจำลำดับสีผ่านเกม
-2. 🏆 สร้างความสนุกและความท้าทาย ทำลายสถิติของตัวเอง หรือผลัดกันแข่งกับเพื่อน
-3. 📡 พัฒนาเกมบนไมโครคอนโทรลเลอร์ที่เชื่อมต่อเว็บไซต์ผ่าน Wi-Fi เพื่อตั้งค่า แสดงผล และติดตามประวัติคะแนน
+1. ฝึกการสังเกต การจดจ่อ และการจดจำลำดับสีผ่านเกม
+2. สร้างความสนุกและความท้าทาย ทำลายสถิติของตัวเอง หรือผลัดกันแข่งกับเพื่อน
+3. พัฒนาเกมบนไมโครคอนโทรลเลอร์ที่เชื่อมต่อเว็บไซต์ผ่าน Wi-Fi เพื่อตั้งค่า แสดงผล และติดตามประวัติคะแนน
 
 ---
 
@@ -74,13 +72,13 @@ ColorSync is a sequence-memory game built with an Arduino UNO R4 WiFi and a web 
 
 ## 🕹️ วิธีเล่น
 
-1. 📝 เปิดเว็บไซต์และกรอกชื่อเล่น
-2. 🚀 เลือกระดับความเร็วแล้วกดเริ่มเกม
-3. 👀 สังเกตและจดจำลำดับไฟที่แสดง (พร้อมเสียง)
-4. 🔘 รอให้แสดงครบ แล้วกดปุ่มตามลำดับที่เห็น
-5. ✅ ตอบถูกครบ รับ 1 คะแนน และรอบถัดไปเพิ่มอีก 1 สี
-6. 💥 กดผิดหรือหมดเวลาตอบ เกมจบและแสดงคะแนน
-7. 🤝 แข่งกับเพื่อน: ผลัดกันเล่นด้วยความเร็วเดียวกัน แล้วเทียบคะแนน
+1. เปิดเว็บไซต์และกรอกชื่อเล่น
+2. เลือกระดับความเร็วแล้วกดเริ่มเกม
+3. สังเกตและจดจำลำดับไฟที่แสดง (พร้อมเสียง)
+4. รอให้แสดงครบ แล้วกดปุ่มตามลำดับที่เห็น
+5. ตอบถูกครบ รับ 1 คะแนน และรอบถัดไปเพิ่มอีก 1 สี
+6. กดผิดหรือหมดเวลาตอบ เกมจบและแสดงคะแนน
+7. แข่งกับเพื่อน: ผลัดกันเล่นด้วยความเร็วเดียวกัน แล้วเทียบคะแนน
 
 ### ⏱️ ระดับความเร็ว
 
@@ -167,10 +165,10 @@ flowchart LR
 
 | ไฟล์ | คำอธิบาย |
 |---|---|
-| [`firmware/ColorSync/ColorSync.ino`](firmware/ColorSync/ColorSync.ino) | เฟิร์มแวร์บอร์ด: สุ่มลำดับ ตรวจคำตอบ คุม LED/Buzzer/LCD และให้บริการเว็บ |
+| [`firmware/ColorSync/ColorSync.ino`](firmware/ColorSync/ColorSync.ino) | เฟิร์มแวร์บอร์ด : สุ่มลำดับ ตรวจคำตอบ คุม LED/Buzzer/LCD และให้บริการเว็บ |
 | [`firmware/ColorSync/web_assets.h`](firmware/ColorSync/web_assets.h) | เว็บที่ถูกบีบอัดและฝังในบอร์ด (สร้างจาก `pack-web.py` ห้ามแก้ตรง ๆ) |
 | [`firmware/ColorSync/secrets.example.h`](firmware/ColorSync/secrets.example.h) | ตัวอย่างไฟล์ตั้งค่า Wi-Fi |
-| [`dist/`](dist/) | หน้าเว็บ: `index.html`, `styles.css`, `app.js` และไฟล์อื่น ๆ |
+| [`dist/`](dist/) | หน้าเว็บ : `index.html`, `styles.css`, `app.js` และไฟล์อื่น ๆ |
 | [`scripts/pack-web.py`](scripts/pack-web.py) | ฝังเว็บลงเฟิร์มแวร์ |
 | [`scripts/build-pages.py`](scripts/build-pages.py) | สร้างโฟลเดอร์ `docs/` สำหรับ GitHub Pages |
 | [`tests/`](tests/) | เทสต์การซิงก์ไฟระหว่างบอร์ดกับเว็บ |
@@ -186,9 +184,9 @@ flowchart LR
 ### 🔬 จุดที่น่าสนใจทางเทคนิค
 
 - **ไม่ใช้ `delay()` ระหว่างเล่น:** ใช้ `millis()` จับเวลาทุกช่วง บอร์ดจึงยังตอบคำขอจากเว็บได้ตลอด
-- **ไฟบนเว็บตรงกับบอร์ด:** บอร์ดส่งตารางเวลาของรอบ (เวลาเริ่ม ไฟติด ช่วงเว้น ลำดับสี) ให้เว็บคำนวณแสงเอง ลดปัญหาจากการดึงสถานะที่ขาดช่วง
-- **Debounce ปุ่ม:** กรองสัญญาณรบกวน 25 ms และนับการกดหลายปุ่มพร้อมกันว่ากดผิด
-- **ฝังเว็บในบอร์ด:** บีบอัดไฟล์เว็บด้วย gzip เก็บใน flash ของ UNO R4 ไม่ต้องใช้ SD card
+- **ไฟบนเว็บตรงกับบอร์ด : ** บอร์ดส่งตารางเวลาของรอบ (เวลาเริ่ม ไฟติด ช่วงเว้น ลำดับสี) ให้เว็บคำนวณแสงเอง ลดปัญหาจากการดึงสถานะที่ขาดช่วง
+- **Debounce ปุ่ม : ** กรองสัญญาณรบกวน 25 ms และนับการกดหลายปุ่มพร้อมกันว่ากดผิด
+- **ฝังเว็บในบอร์ด : ** บีบอัดไฟล์เว็บด้วย gzip เก็บใน flash ของ UNO R4 ไม่ต้องใช้ SD card
 
 ---
 
@@ -209,11 +207,3 @@ python3 scripts/pack-web.py      # ฝังเว็บใหม่ลง web_a
 python3 scripts/build-pages.py   # สร้าง docs/ สำหรับ GitHub Pages
 npm test                         # รันเทสต์
 ```
-
----
-
-<div align="center">
-
-**ทีมงานคุณตะพาบ 🐢** · Physical Computing 2026 · Faculty of Information Technology, KMITL
-
-</div>
