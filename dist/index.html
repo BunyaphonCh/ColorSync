@@ -710,7 +710,11 @@
       var PROJECT_LINKS = {
         poster: "assets/poster-preview.jpg",
         posterFile: "assets/Poster_ColorSync.pdf",
-        video: ""
+        /* คลิป: ไฟล์ในโปรเจกต์ (.mp4/.mov/.webm) หรือลิงก์ YouTube/Google Drive ก็ได้
+           videoLink: ลิงก์ YouTube สำรอง ใช้เป็นปุ่ม "ดูบน YouTube" เมื่อเล่นไฟล์ในเว็บไม่ได้ (หรือเปิดจากบอร์ด)
+           อยากเปลี่ยนเป็นปุ่มไป YouTube อย่างเดียว: เว้น video ว่างไว้ แล้วใส่ videoLink */
+        video: "assets/Phycom_proj_final.mov",
+        videoLink: ""
       };
       var BOARD_POSTER = { image: "images/poster-thumb.jpg", file: "https://github.com/BunyaphonCh/ColorSync/blob/main/dist/assets/Poster_ColorSync.pdf" };
       (function () {
@@ -740,16 +744,38 @@
           fill("poster-frame", "poster-link", shown, posterFile);
         }
         var video = (PROJECT_LINKS.video || "").trim();
-        if (video) {
+        var videoLink = (PROJECT_LINKS.videoLink || "").trim();
+        var isLocalVideo = video && !/^(https?:)?\/\//i.test(video);
+        var GITHUB_DIST = "https://github.com/BunyaphonCh/ColorSync/blob/main/dist/";
+        function videoButton(href) {
+          var frame = document.getElementById("video-frame"), link = document.getElementById("video-link");
+          if (!frame || !href) return;
+          var yt = ytId(href);
+          var a = document.createElement("a");
+          a.className = "media-empty media-cta"; a.href = href; a.target = "_blank"; a.rel = "noopener";
+          a.innerHTML = "<span>▶</span><b>ดูคลิปสาธิต</b><small>" + (yt ? "เปิดดูบน YouTube ↗" : "เปิดในหน้าต่างใหม่ ↗") + "</small>";
+          frame.classList.remove("filled"); frame.innerHTML = ""; frame.appendChild(a);
+          if (link) { link.href = href; link.textContent = yt ? "เปิดดูบน YouTube ↗" : "เปิดดูคลิปในหน้าต่างใหม่ ↗"; link.hidden = false; }
+        }
+        if (video && isLocalVideo && onBoard) {
+          /* ไฟล์วิดีโอใหญ่เกินกว่าจะเก็บในบอร์ด: ให้กดไปดูที่ YouTube หรือ GitHub แทน */
+          videoButton(videoLink || GITHUB_DIST + video);
+        } else if (video) {
           var el, y = ytId(video), d = /drive\.google\.com/.test(video) ? driveId(video) : "";
-          if (/\.mp4(\?|$)/i.test(video)) { el = document.createElement("video"); el.src = video; el.controls = true; el.preload = "metadata"; }
-          else {
+          if (/\.(mp4|mov|m4v|webm)(\?|$)/i.test(video)) {
+            el = document.createElement("video");
+            el.src = video; el.controls = true; el.preload = "metadata"; el.playsInline = true;
+            /* เล่นไฟล์ไม่ได้ (ไม่มีไฟล์ / โค้ดเดกไม่รองรับ เช่น HEVC ใน Chrome) -> เปลี่ยนเป็นปุ่ม */
+            el.addEventListener("error", function () { videoButton(videoLink || video); });
+          } else {
             el = document.createElement("iframe");
             el.src = y ? "https://www.youtube.com/embed/" + y : d ? "https://drive.google.com/file/d/" + d + "/preview" : video;
             el.title = "คลิปสาธิต ColorSync"; el.loading = "lazy"; el.allowFullscreen = true;
             el.allow = "clipboard-write; encrypted-media; picture-in-picture";
           }
           fill("video-frame", "video-link", el, y ? "https://youtu.be/" + y : video);
+        } else if (videoLink) {
+          videoButton(videoLink);
         }
       })();
     </script>

@@ -17,7 +17,7 @@ if (root / "dist" / "assets").exists():
 with zipfile.ZipFile(docs / "ColorSync-source.zip", "w", zipfile.ZIP_DEFLATED) as archive:
     for directory in ("dist", "firmware", "scripts", "tests"):
         for path in (root / directory).rglob("*"):
-            if path.is_file() and path.name != "secrets.h" and path.suffix != ".zip":
+            if path.is_file() and path.name != "secrets.h" and path.suffix != ".zip" and "assets" not in path.relative_to(root).parts:
                 archive.write(path, Path("ColorSync") / path.relative_to(root))
     for name in ("README.md", "GITHUB-PAGES.md", "package.json", ".gitignore"):
         if (root / name).exists():
