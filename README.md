@@ -21,7 +21,6 @@ Physical Computing 2026 - IT KMITL [คณะเทคโนโลยีสา�
 |---|---|
 | เว็บไซต์โครงงาน | [เปิดเว็บไซต์ ColorSync](https://bunyaphonch.github.io/ColorSync/) |
 | คลิปสาธิต (YouTube) | [ดูคลิปสาธิต](https://www.youtube.com/watch?v=jZmTPLiqHVk) |
-| Source Code | [ดูโค้ดบน GitHub](https://github.com/BunyaphonCh/ColorSync) |
 
 ---
 
