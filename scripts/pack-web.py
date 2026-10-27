@@ -2,14 +2,18 @@
 from pathlib import Path
 import gzip
 import re
+import runpy
+runpy.run_path(str(Path(__file__).with_name("bundle-web.py")))
 root = Path(__file__).resolve().parents[1]
-files = ['index.html', 'styles.css', 'app.js', 'settings.js', 'device-api.js', 'timeline.js', 'mock-device.js', 'storage.js', 'logo.js']
+files = ['index.html', 'styles.css']
 files += [p.relative_to(root/'dist').as_posix() for p in sorted((root/'dist/images').glob('*.jpg'))]
 lines = ['// GENERATED FILE: edit dist files, then run scripts/pack-web.py. Do not edit these byte arrays.', '#pragma once', '#include <Arduino.h>', 'struct WebAsset { const char *path; const char *mime; const uint8_t *data; size_t length; };']
 entries=[]
 for i,name in enumerate(files):
     content=(root/'dist'/name).read_bytes()
     if name=='index.html':
+        bundle=(root/'dist/app.bundle.js').read_bytes().replace(b'</script', b'<\\/script')
+        content=content.replace(b'<script src="app.bundle.js"></script>', b'<script>'+bundle+b'</script>')
         content=re.sub(rb'href="ColorSync-source.zip"\s+download', b'href="https://github.com/BunyaphonCh/ColorSync"', content)
     compressed=gzip.compress(content, compresslevel=9, mtime=0)
     lines.append(f'const uint8_t ASSET_{i}[] = {{'+','.join(str(b) for b in compressed)+'};')

@@ -542,7 +542,7 @@
             <button id="start" class="primary" disabled>
               เริ่มเกม <span>↗</span></button
             ><button id="stop" class="danger" hidden>จบเกมรอบนี้</button
-            ><small id="start-help">เชื่อมต่อบอร์ดหรือเลือกทดลองเล่น</small>
+            ><small id="start-help">ไม่ต้องมีบอร์ด · คลิกสีบนจอหรือกด 1–4</small>
           </div>
         </div>
         <div class="result-panel" id="result" hidden aria-live="polite">
@@ -739,6 +739,25 @@
         }
       })();
     </script>
-    <script type="module" src="app.js"></script>
+    <script>
+(function () {
+  // Navigation works even if the game has not loaded yet.
+  function navigate() {
+    const hash = location.hash.slice(1);
+    const page = ['home', 'arena', 'history', 'matches'].includes(hash) ? hash : 'home';
+    document.querySelectorAll('.view').forEach(el => { el.hidden = el.id !== page; });
+    document.querySelectorAll('[data-nav]').forEach(el => {
+      const selected = el.dataset.nav === page;
+      el.classList.toggle('active', selected);
+      if (selected) el.setAttribute('aria-current', 'page');
+      else el.removeAttribute('aria-current');
+    });
+    if (hash === 'abstract') document.getElementById('abstract')?.scrollIntoView();
+  }
+  window.addEventListener('hashchange', navigate);
+  navigate();
+})();
+</script>
+    <script src="app.bundle.js"></script>
   </body>
 </html>

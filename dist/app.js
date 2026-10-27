@@ -177,10 +177,13 @@ function chooseSource(next) {
 async function startGame() {
   if (
     isStarting ||
-    isGameActive() ||
-    (dataSource === "hardware" && !isConnected)
+    isGameActive()
   ) {
     return;
+  }
+  // ถ้ายังไม่ต่อบอร์ด ปุ่มเริ่มจะเล่นเกมในเบราว์เซอร์แทน
+  if (dataSource === "hardware" && !isConnected) {
+    chooseSource("demo");
   }
   isStarting = true;
   updateScreen();
@@ -470,7 +473,7 @@ function updateGameControls() {
     button.disabled = areSettingsLocked();
   });
   getElement("start").disabled =
-    isPlaying || isStarting || (dataSource === "hardware" && !isConnected);
+    isPlaying || isStarting;
   getElement("start").hidden = isPlaying;
   getElement("stop").hidden = !isPlaying;
   getElement("stop").disabled = dataSource === "hardware" && !isConnected;
@@ -478,12 +481,14 @@ function updateGameControls() {
     "start",
     currentMatch?.status === "between"
       ? `เริ่มตา ${currentMatch.names[1]} ↗`
-      : "เริ่มเกม ↗",
+      : dataSource === "hardware" && !isConnected
+        ? "เล่นบนเว็บ ↗"
+        : "เริ่มเกม ↗",
   );
   setText(
     "start-help",
     dataSource === "hardware" && !isConnected
-      ? "เชื่อมต่อบอร์ดหรือเลือกทดลองเล่น"
+      ? "ไม่ต้องมีบอร์ด · คลิกสีบนจอหรือกด 1–4"
       : `${levelSettings.name} · ผ่านครบ ${levelSettings.rounds} รอบ`,
   );
 }
