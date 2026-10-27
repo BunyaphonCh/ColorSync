@@ -25,6 +25,10 @@ const byte BUZZER_PIN = 12;
 const bool LED_ACTIVE_HIGH = true;
 const bool USE_SOUND = true;
 const bool USE_LCD = true;
+// false = Serial Monitor สะอาด ไม่มี log HTTP รัว ๆ (เปลี่ยนเป็น true เฉพาะตอน debug)
+const bool DEBUG_HTTP = false;
+// พิมพ์ที่อยู่เว็บซ้ำทุกกี่มิลลิวินาที (ตอนไม่ได้เล่นเกม) เพื่อให้ copy ลิงก์ได้ทัน
+const unsigned long ADDRESS_REPEAT_MS = 10000;
 const unsigned int NOTES[4] = {500, 600, 700, 800};
 const unsigned long PREPARE_MS = 2500, ROUND_MS = 1500, ANSWER_MS = 10000,
                     DEBOUNCE_MS = 25;
@@ -341,6 +345,10 @@ void tickLCD() {
   }
 }
 
+void printAddress() {
+  Serial.print("Open http://");
+  Serial.println(WiFi.localIP());
+}
 void closeClient() {
   client.stop();
   client = WiFiClient();
@@ -434,10 +442,12 @@ void handleRequest() {
     errorResponse(400, "Bad request");
     return;
   }
-  Serial.print("[HTTP] complete: ");
-  Serial.print(method);
-  Serial.print(" ");
-  Serial.println(path);
+  if (DEBUG_HTTP) {
+    Serial.print("[HTTP] complete: ");
+    Serial.print(method);
+    Serial.print(" ");
+    Serial.println(path);
+  }
   if (strcmp(method, "GET") == 0) {
     if (strcmp(path, "/api/status") == 0) {
       statusResponse();
@@ -479,11 +489,11 @@ void handleRequest() {
       return;
     }
     lastStartRequest = requestId;
-    Serial.println("[GAME] calling startGame");
+    if (DEBUG_HTTP) Serial.println("[GAME] calling startGame");
     startGame();
-    Serial.println("[GAME] started; preparing response");
+    if (DEBUG_HTTP) Serial.println("[GAME] started; preparing response");
     statusResponse();
-    Serial.println("[HTTP] start response queued");
+    if (DEBUG_HTTP) Serial.println("[HTTP] start response queued");
     return;
   }
   if (strcmp(path, "/api/stop") == 0) {
@@ -529,15 +539,17 @@ void tickHTTP() {
     headerEnd = -1;
     bodyLength = 0;
     requestStartedAt = millis();
-    Serial.println("[HTTP] new connection");
+    if (DEBUG_HTTP) Serial.println("[HTTP] new connection");
   }
   if (millis() - requestStartedAt > 30000UL) {
-    Serial.print("[HTTP] timeout; received=");
-    Serial.print(requestLength);
-    Serial.print(" headerEnd=");
-    Serial.print(headerEnd);
-    Serial.print(" bodyLength=");
-    Serial.println(bodyLength);
+    if (DEBUG_HTTP) {
+      Serial.print("[HTTP] timeout; received=");
+      Serial.print(requestLength);
+      Serial.print(" headerEnd=");
+      Serial.print(headerEnd);
+      Serial.print(" bodyLength=");
+      Serial.println(bodyLength);
+    }
     closeClient();
     return;
   }
@@ -546,11 +558,12 @@ void tickHTTP() {
     // ระหว่างรอ loop ยังทำงาน อ่านปุ่มและอัปเดตเกมได้
     if (responseOffset >= responseLength) {
       if (millis() - requestStartedAt >= 250UL) {
-        Serial.print("HTTP sent: ");
-        Serial.print(responseOffset);
-        Serial.print("/");
-        Serial.println(responseLength);
-
+        if (DEBUG_HTTP) {
+          Serial.print("HTTP sent: ");
+          Serial.print(responseOffset);
+          Serial.print("/");
+          Serial.println(responseLength);
+        }
         closeClient();
       }
       return;
@@ -609,8 +622,10 @@ void tickHTTP() {
       int at = headers.indexOf("content-length:");
       if (at >= 0)
         bodyLength = headers.substring(at + 15).toInt();
-      Serial.print("[HTTP] headers received; body expected=");
-      Serial.println(bodyLength);
+      if (DEBUG_HTTP) {
+        Serial.print("[HTTP] headers received; body expected=");
+        Serial.println(bodyLength);
+      }
       if (bodyLength < 0 || bodyLength > 768) {
         errorResponse(413, "Body too large");
         return;
@@ -635,8 +650,7 @@ void tickWiFi() {
     Serial.println("[BUILD] ColorSync SYNC FX 02");
     Serial.print("[WiFi firmware] ");
     Serial.println(WiFi.firmwareVersion());
-    Serial.print("Open http://");
-    Serial.println(WiFi.localIP());
+    printAddress();
   } else if (!connected) {
     if (wifiReady) {
       closeClient();
@@ -694,8 +708,17 @@ void loop() {
   tickHTTP();
   tickLCD();
   tickWiFi();
+  // พิมพ์ที่อยู่เว็บซ้ำทุก ADDRESS_REPEAT_MS ตอนไม่ได้เล่นเกม ให้หาลิงก์เจอเสมอ
+  static unsigned long addressPrintedAt = 0;
+  if (wifiReady && !activeGame() && millis() - addressPrintedAt >= ADDRESS_REPEAT_MS) {
+    addressPrintedAt = millis();
+    printAddress();
+  }
   if (Serial.available()) {
     char c = Serial.read();
+    if (c == 'i' || c == 'I') {
+      if (wifiReady) printAddress(); else Serial.println("Wi-Fi not connected yet.");
+    }
     if (!activeGame() && c >= '1' && c <= '4') {
       speedIndex = c - '1';
       targetLevels = TARGETS[speedIndex];
