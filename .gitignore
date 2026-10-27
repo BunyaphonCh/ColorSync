@@ -1,0 +1,5 @@
+
+# Keep large media and generated archives local
+*.mov
+*.mp4
+*.zip
