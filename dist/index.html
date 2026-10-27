@@ -702,12 +702,17 @@
     <div id="toast" role="status" hidden></div>
     <script>
       /* ===== ใส่ลิงก์โปสเตอร์และคลิปตรงนี้ (เว้นว่างไว้ = แสดงกรอบ "เร็ว ๆ นี้") =====
-         poster : ลิงก์รูปโปสเตอร์ (ลิงก์รูปตรง ๆ หรือ Google Drive ที่แชร์แบบ "ทุกคนที่มีลิงก์")
-         video  : ลิงก์คลิป YouTube / Google Drive / ไฟล์ .mp4 */
+         poster     : รูปตัวอย่างโปสเตอร์ที่แสดงในกรอบ (ลิงก์รูป หรือ Google Drive แบบ "ทุกคนที่มีลิงก์")
+         posterFile : ไฟล์โปสเตอร์เต็ม (PDF) ที่เปิดเมื่อกดรูปหรือกดปุ่มใต้กรอบ
+         video      : ลิงก์คลิป YouTube / Google Drive / ไฟล์ .mp4
+         หมายเหตุ: ถ้าเปิดเว็บจาก IP ของบอร์ด จะใช้รูปย่อ images/poster-thumb.jpg (ฝังในบอร์ด)
+         และเปิดไฟล์ PDF จาก GitHub แทน เพราะ PDF ใหญ่เกินกว่าจะเก็บในบอร์ด */
       var PROJECT_LINKS = {
-        poster: "",
+        poster: "assets/poster-preview.jpg",
+        posterFile: "assets/Poster_ColorSync.pdf",
         video: ""
       };
+      var BOARD_POSTER = { image: "images/poster-thumb.jpg", file: "https://github.com/BunyaphonCh/ColorSync/blob/main/dist/assets/Poster_ColorSync.pdf" };
       (function () {
         function driveId(u) { var m = u.match(/\/d\/([\w-]+)/) || u.match(/[?&]id=([\w-]+)/); return m ? m[1] : ""; }
         function ytId(u) { var m = u.match(/(?:youtu\.be\/|[?&]v=|embed\/|shorts\/)([\w-]{11})/); return m ? m[1] : (/^[\w-]{11}$/.test(u) ? u : ""); }
@@ -717,13 +722,22 @@
           frame.innerHTML = ""; frame.classList.add("filled"); frame.appendChild(el);
           if (link && href) { link.href = href; link.hidden = false; }
         }
-        var poster = (PROJECT_LINKS.poster || "").trim();
+        var onBoard = location.protocol === "http:" && /^(\d{1,3}\.){3}\d{1,3}$/.test(location.hostname) &&
+          (location.port === "" || location.port === "80");
+        var poster = (onBoard ? BOARD_POSTER.image : PROJECT_LINKS.poster || "").trim();
+        var posterFile = (onBoard ? BOARD_POSTER.file : PROJECT_LINKS.posterFile || "").trim();
         if (poster) {
           var img = document.createElement("img");
           var pid = /drive\.google\.com/.test(poster) ? driveId(poster) : "";
           img.src = pid ? "https://drive.google.com/thumbnail?id=" + pid + "&sz=w2000" : poster;
           img.alt = "โปสเตอร์โครงงาน ColorSync"; img.loading = "lazy";
-          fill("poster-frame", "poster-link", img, poster);
+          var shown = img;
+          if (posterFile) {
+            shown = document.createElement("a");
+            shown.href = posterFile; shown.target = "_blank"; shown.rel = "noopener";
+            shown.title = "เปิดโปสเตอร์ขนาดเต็ม"; shown.appendChild(img);
+          }
+          fill("poster-frame", "poster-link", shown, posterFile);
         }
         var video = (PROJECT_LINKS.video || "").trim();
         if (video) {

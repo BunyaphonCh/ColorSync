@@ -10,6 +10,8 @@ for path in (root / "dist").iterdir():
         shutil.copy2(path, docs / path.name)
 if (root / "dist" / "images").exists():
     shutil.copytree(root / "dist" / "images", docs / "images", dirs_exist_ok=True)
+if (root / "dist" / "assets").exists():
+    shutil.copytree(root / "dist" / "assets", docs / "assets", dirs_exist_ok=True)
 (docs / ".nojekyll").touch()
 # Archive reproducible source only; never include credentials or nested archives.
 with zipfile.ZipFile(docs / "ColorSync-source.zip", "w", zipfile.ZIP_DEFLATED) as archive:
