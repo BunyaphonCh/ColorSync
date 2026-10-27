@@ -19,14 +19,21 @@ Physical Computing 2026 - IT KMITL [คณะเทคโนโลยีสา�
 
 | รายการ | ลิงก์ |
 |---|---|
-| เว็บไซต์โครงงาน | วางลิงก์ที่นี่ |
-| คลิปสาธิต (YouTube) | วางลิงก์ที่นี่ |
-| โปสเตอร์ | วางลิงก์ที่นี่ |
-| Source Code | https://github.com/BunyaphonCh/ColorSync |
+| เว็บไซต์โครงงาน | [เปิดเว็บไซต์ ColorSync](https://bunyaphonch.github.io/ColorSync/) |
+| คลิปสาธิต (YouTube) | [ดูคลิปสาธิต](https://www.youtube.com/watch?v=jZmTPLiqHVk) |
+| Source Code | [ดูโค้ดบน GitHub](https://github.com/BunyaphonCh/ColorSync) |
 
 ---
 
-## 👥 สมาชิกในกลุ่ม
+## 🖼️ โปสเตอร์โครงงาน
+
+[![โปสเตอร์ ColorSync](docs/assets/poster-preview.jpg)](docs/assets/poster-preview.jpg)
+
+[🔍 เปิดดูภาพเต็ม](docs/assets/poster-preview.jpg)
+
+---
+
+## 🗿 สมาชิกทีม
 
 | <img src="dist/images/eiw.png" width="150" /> | <img src="dist/images/pin.png" width="150" /> | <img src="dist/images/tarn.png" width="150" /> | <img src="dist/images/bell.png" width="150" /> |
 | :---: | :---: | :---: | :---: |
