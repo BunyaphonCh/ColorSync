@@ -49,6 +49,42 @@
     <p>เกมมีความเร็ว 4 ระดับ จำนวนรอบ 5, 7, 10 และ 15 รอบตามลำดับ จอ LCD แสดงสถานะและผลการเล่น ส่วนเว็บไซต์ใช้กรอกชื่อ เลือกความเร็ว เริ่มเกม และดูคะแนน โดยบอร์ดให้บริการหน้าเว็บผ่านเครือข่าย Wi-Fi เดียวกัน ระบบบันทึกประวัติในเบราว์เซอร์และรองรับการแข่งขันแบบผลัดกันเล่นสองคนด้วยความเร็วและลำดับสีเดียวกัน โครงงานนี้นำการเขียนโปรแกรม ระบบฝังตัว และการพัฒนาเว็บมาประยุกต์ใช้ร่วมกัน</p>
     <details><summary>Read the English abstract</summary><p>ColorSync is a sequence-memory game built with an Arduino UNO R4 WiFi and a web interface. LEDs and a buzzer present a color sequence, and players repeat it using physical buttons. Each completed round earns one point and adds one color to the next round. Four difficulty levels offer targets of 5, 7, 10, and 15 rounds. An LCD displays game status and results. The board serves a local website for player names, difficulty selection, game controls, and scores. Browser storage keeps play history, while a two-player mode compares results using the same difficulty and sequence. A browser-only demo is also available. The project combines embedded programming and web development in an interactive memory activity.</p></details></div>
   </section>
+  <section class="project-section" id="objectives">
+    <div class="section-caption"><h2>วัตถุประสงค์</h2><p>เราสร้าง ColorSync เพื่ออะไร</p></div>
+    <div class="obj-list">
+      <article class="obj-card c-red">
+        <span class="obj-num">01</span>
+        <div class="obj-body">
+          <span class="obj-icon">◉</span>
+          <h3>ฝึกสังเกตและจดจำ</h3>
+          <p>ฝึกการสังเกต การจดจ่อ และการจดจำลำดับสีผ่านเกม</p>
+          <div class="obj-tags"><span>สังเกต</span><span>จดจ่อ</span><span>จำลำดับ</span></div>
+        </div>
+        <div class="obj-art" aria-hidden="true"><div class="mini-pads"><i class="d-red on"></i><i class="d-yellow"></i><i class="d-green"></i><i class="d-blue"></i></div></div>
+      </article>
+      <article class="obj-card c-yellow">
+        <span class="obj-num">02</span>
+        <div class="obj-body">
+          <span class="obj-icon">♛</span>
+          <h3>สนุกและท้าทาย</h3>
+          <p>สร้างความสนุกและความท้าทาย ทำลายสถิติของตัวเอง หรือผลัดกันแข่งกับเพื่อน</p>
+          <div class="obj-tags"><span>ทำลายสถิติ</span><span>แข่งกับเพื่อน</span></div>
+        </div>
+        <div class="obj-art" aria-hidden="true"><div class="obj-bars"><i style="height:36%"></i><i style="height:62%"></i><i style="height:100%"></i></div><small>สถิติใหม่ ↗</small></div>
+      </article>
+      <article class="obj-card c-blue">
+        <span class="obj-num">03</span>
+        <div class="obj-body">
+          <span class="obj-icon">⇄</span>
+          <h3>เชื่อมบอร์ดเข้ากับเว็บ</h3>
+          <p>พัฒนาเกมบนไมโครคอนโทรลเลอร์ที่เชื่อมต่อเว็บไซต์ผ่าน Wi-Fi เพื่อตั้งค่า แสดงผล และติดตามประวัติคะแนน</p>
+          <div class="obj-tags"><span>Arduino</span><span>Wi-Fi</span><span>เว็บไซต์</span></div>
+        </div>
+        <div class="obj-art" aria-hidden="true"><div class="obj-link"><b>BOARD</b><em>⇄</em><b>WEB</b></div></div>
+      </article>
+    </div>
+  </section>
+
   <section class="project-section" id="how">
     <div class="section-caption"><h2>วิธีเล่น: ดู จำ กด</h2><p>ทุกรอบเริ่มจากลำดับเดิม</p></div>
     <div class="how-visual">
@@ -78,8 +114,8 @@
     <div class="section-caption"><h2>จุดเด่นของโปรเจ็กต์</h2><p>ทำไมต้องเล่น ColorSync</p></div>
     <div class="hl-grid">
       <article class="hl-card c-red"><span class="hl-icon">◉</span><h3>เล่นได้สองแบบ</h3><p>เล่นกับบอร์ด Arduino จริง หรือทดลองกดบนหน้าเว็บก็ได้</p></article>
-      <article class="hl-card c-yellow"><span class="hl-icon">⚡</span><h3>4 ระดับความเร็ว</h3><p>ไฟกระพริบตั้งแต่ช้าไปเร็วมาก จำนวน 5, 7, 10 หรือ 15 รอบตามระดับที่เลือก</p></article>
-      <article class="hl-card c-green"><span class="hl-icon">⚔</span><h3>แข่งกับเพื่อน</h3><p>ผลัดกันเล่นสองคน ใช้ความเร็วและลำดับสีเดียวกัน</p></article>
+      <article class="hl-card c-yellow"><span class="hl-icon">⚡</span><h3>4 ระดับความเร็ว</h3><p>ไฟกระพริบตั้งแต่ช้าไปเร็วมาก ผ่านครบ 5, 7, 10 หรือ 15 รอบ</p></article>
+      <article class="hl-card c-green"><span class="hl-icon">⚔</span><h3>แข่งกับเพื่อน</h3><p>ผลัดกันเล่นสองคน ใช้ความเร็วและลำดับสีเดียวกัน แฟร์ทั้งคู่</p></article>
       <article class="hl-card c-blue"><span class="hl-icon">♫</span><h3>เสียงแยกตามสี</h3><p>Buzzer ร้องเสียงสูงต่ำต่างกันในแต่ละสี ฟังช่วยจำได้</p></article>
       <article class="hl-card c-red"><span class="hl-icon">▤</span><h3>ประวัติและอันดับ</h3><p>บันทึกคะแนนแยกตามระดับ ดูสถิติสูงสุดและอันดับผู้เล่นได้</p></article>
       <article class="hl-card c-yellow"><span class="hl-icon">✳</span><h3>ไม่ต้องติดตั้งแอป</h3><p>บอร์ดเปิดเว็บเอง แค่ต่อ Wi-Fi เดียวกันแล้วเปิดเบราว์เซอร์</p></article>
@@ -193,7 +229,7 @@
   <section class="project-section" id="code">
     <div class="section-caption"><h2>ตัวอย่างโค้ด Arduino</h2><p>ตัดมาจากสเก็ตช์จริง ดูทั้งหมดได้ใน GitHub</p></div>
     <div>
-<figure class="code-card"><figcaption>ColorSync.ino - กำหนดขา เสียง และเวลา</figcaption><pre><code><span class="tk-k">const</span> <span class="tk-k">byte</span> LED_PINS[<span class="tk-n">4</span>] = {<span class="tk-n">2</span>, <span class="tk-n">4</span>, <span class="tk-n">6</span>, <span class="tk-n">8</span>};
+<figure class="code-card"><figcaption>ColorSync.ino · กำหนดขา เสียง และเวลา</figcaption><pre><code><span class="tk-k">const</span> <span class="tk-k">byte</span> LED_PINS[<span class="tk-n">4</span>] = {<span class="tk-n">2</span>, <span class="tk-n">4</span>, <span class="tk-n">6</span>, <span class="tk-n">8</span>};
 <span class="tk-k">const</span> <span class="tk-k">byte</span> BUTTON_PINS[<span class="tk-n">4</span>] = {<span class="tk-n">3</span>, <span class="tk-n">5</span>, <span class="tk-n">7</span>, <span class="tk-n">9</span>};
 
 <span class="tk-k">const</span> <span class="tk-k">byte</span> BUZZER_PIN = <span class="tk-n">12</span>;
@@ -203,7 +239,7 @@
                     DEBOUNCE_MS = <span class="tk-n">25</span>;
 <span class="tk-k">const</span> <span class="tk-k">unsigned</span> <span class="tk-k">int</span> ON_MS[] = {<span class="tk-n">600</span>, <span class="tk-n">350</span>, <span class="tk-n">180</span>, <span class="tk-n">90</span>}, GAP_MS[] = {<span class="tk-n">250</span>, <span class="tk-n">150</span>, <span class="tk-n">100</span>, <span class="tk-n">70</span>};
 <span class="tk-k">const</span> <span class="tk-k">int</span> TARGETS[] = {<span class="tk-n">5</span>, <span class="tk-n">7</span>, <span class="tk-n">10</span>, <span class="tk-n">15</span>};</code></pre></figure>
-<figure class="code-card"><figcaption>ColorSync.ino - แสดงสีหนึ่งสี (LED + เสียง)</figcaption><pre><code><span class="tk-k">void</span> <span class="tk-f">showColor</span>(<span class="tk-k">int</span> color) {
+<figure class="code-card"><figcaption>ColorSync.ino · แสดงสีหนึ่งสี (LED + เสียง)</figcaption><pre><code><span class="tk-k">void</span> <span class="tk-f">showColor</span>(<span class="tk-k">int</span> color) {
   <span class="tk-f">lightsOff</span>();
   <span class="tk-k">if</span> (color &lt; <span class="tk-n">0</span> || color &gt; <span class="tk-n">3</span>)
     <span class="tk-k">return</span>;
@@ -212,7 +248,7 @@
     <span class="tk-f">tone</span>(BUZZER_PIN, NOTES[color]);
   litColor = color;
 }</code></pre></figure>
-<figure class="code-card"><figcaption>ColorSync.ino - ตรวจว่ากดตรงกับลำดับหรือไม่</figcaption><pre><code>  <span class="tk-k">int</span> color = <span class="tk-n">0</span>;
+<figure class="code-card"><figcaption>ColorSync.ino · ตรวจว่ากดตรงกับลำดับหรือไม่</figcaption><pre><code>  <span class="tk-k">int</span> color = <span class="tk-n">0</span>;
   <span class="tk-k">while</span> (!(stableButtons &amp; (<span class="tk-n">1</span> &lt;&lt; color)))
     ++color;
   <span class="tk-k">int</span> expected = answerIndex;
